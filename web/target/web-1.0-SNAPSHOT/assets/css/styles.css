@@ -1,3 +1,16 @@
+
+
+/* CONTENTS---------------------------------------------------------
+
+ 1. Overall Styling
+ 2. Index Page Styling
+ 3. Background Styling
+ 4. Navbar
+ 5. Home Page Styling
+
+*/
+
+/* 1. Overall Styling */
 body {
   background-image: url('../../assets/img/background.png');
   background-repeat: inherit;
@@ -6,18 +19,14 @@ body {
   text-align: center;
 }
 
+/* 2. Index Page Styling */
+
 #indexBackground {
   display: block;
   margin: auto;
-  width: 50%;
+  width: 100%;
   height: 100%;
   background-image: url('../../assets/img/backgroundImage.png');
-}
-
-#logo {
-  display: block;
-  padding-top: 10vh;
-  margin: auto;
 }
 
 #btnIndex {
@@ -27,6 +36,14 @@ body {
   padding: 3vh;
 }
 
+#logo {
+  display: block;
+  padding-top: 10vh;
+  margin: auto;
+}
+
+/* 3. Background Styling */
+
 #homeBackground {
   display: block;
   margin: auto;
@@ -35,16 +52,24 @@ body {
   background-image: url('../../assets/img/backgroundImage.png');
 }
 
-#homeLogo {
-}
+/* 4. Navbar  */
 
 a {
   text-decoration: none;
 }
 
-.footer-basic {
-  bottom: 0;
-  position: fixed;
-  width: 75%;
+/* 5. Home Page Styling */
+
+.row {
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    width: 100%;
+}
+
+.col{
+    width: 50%;
 }
 

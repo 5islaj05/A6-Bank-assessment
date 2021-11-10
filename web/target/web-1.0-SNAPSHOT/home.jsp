@@ -34,94 +34,80 @@
     //String bankUrl = "http://localhost:8080/bank/rest";
     String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";
     BankRestClient client = new BankRestClientImpl(bankUrl);
-
     TransactionReplyMessage reply = null;
-
     String action = null;
     action = request.getParameter("action");
-
     CreditCard cardFrom = null;
     CreditCard cardTo = null;
     
   //  final Logger LOG = LogManager.getLogger(BankClientTest.class);
-
     if ("transaction".equals(action)) {
-
         //Card From
         String name1 = request.getParameter("name1");
         String endDate1 = request.getParameter("endDate1");
         String cardnumber1 = request.getParameter("cardnumber1");
         String cvv1 = request.getParameter("cvv1");
         String issueNumber1 = request.getParameter("issueNumber1");
-
         cardFrom = new CreditCard();
-
         cardFrom.setName(name1);
         cardFrom.setEndDate(endDate1);
         cardFrom.setCardnumber(cardnumber1);
         cardFrom.setCvv(cvv1);
         cardFrom.setIssueNumber(issueNumber1);
-
+        
         //Card To
         String name2 = request.getParameter("name2");
         String endDate2 = request.getParameter("endDate2");
         String cardnumber2 = request.getParameter("cardnumber2");
         String cvv2 = request.getParameter("cvv2");
         String issueNumber2 = request.getParameter("issueNumber2");
-
         cardTo = new CreditCard();
-
         cardTo.setName(name2);
         cardTo.setEndDate(endDate2);
         cardTo.setCardnumber(cardnumber2);
         cardTo.setCvv(cvv2);
         cardTo.setIssueNumber(issueNumber2);
-
+        
         //Amount
-        Double amount = 50.0;
-
+        String amountString = request.getParameter("amount");
+        double amount = Double.parseDouble(amountString);
+        
         reply = client.transferMoney(cardFrom, cardTo, amount);
+        
         // client.transferMoney(cardFrom, cardTo, amount);
     } else if ("refund".equals(action)) {
-
         String name3 = request.getParameter("name3");
         String endDate3 = request.getParameter("endDate3");
         String cardnumber3 = request.getParameter("cardnumber3");
         String cvv3 = request.getParameter("cvv3");
         String issueNumber3 = request.getParameter("issueNumber3");
-
         cardFrom = new CreditCard();
-
         cardFrom.setName(name3);
         cardFrom.setEndDate(endDate3);
         cardFrom.setCardnumber(cardnumber3);
         cardFrom.setCvv(cvv3);
         cardFrom.setIssueNumber(issueNumber3);
-
+        
         //Card To
         String name4 = request.getParameter("name4");
         String endDate4 = request.getParameter("endDate4");
         String cardnumber4 = request.getParameter("cardnumber4");
         String cvv4 = request.getParameter("cvv4");
         String issueNumber4 = request.getParameter("issueNumber4");
-
         cardTo = new CreditCard();
-
         cardTo.setName(name4);
         cardTo.setEndDate(endDate4);
         cardTo.setCardnumber(cardnumber4);
         cardTo.setCvv(cvv4);
         cardTo.setIssueNumber(issueNumber4);
-
-        Double amount = 50.0;
-
+        
+//        Amount
+        String amountString = request.getParameter("amount");
+        double amount = Double.parseDouble(amountString);
+        
         reply = client.transferMoney(cardFrom, cardTo, amount);
-
     }
-
-
 %>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -134,7 +120,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body style="opacity: 1;height: 100vh;font-size: 16px;">
+<body>
     <div id="homeBackground">
         <nav class="navbar navbar-light navbar-expand-md" style="background: #1e2167;color: rgb(255,255,255);">
             <div class="container-fluid"><a class="navbar-brand" href="index.html" style="color: rgba(255,255,255,0.9);">Bank Application</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -151,13 +137,14 @@
         </nav>
         
         <div>
-            <h1>Lest send a request!</h1>
+            
 
-        <form action="./first.jsp" method="post">
+        <form action="./home.jsp" method="post">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-5>
-
+                    
+                    <div class="col">
+                         <h1>Enter payer's details</h1>
                          <h3>From Card</h3>
                          <label for="fname">Name:</label><br>
                         <input type="text" name="name1" value="test user1"><br>
@@ -170,7 +157,10 @@
                         <label for="lname">Issuer Name:</label><br>
                         <input type="text" name="issueNumber1" value="01"><br>
                     </div>
-                    <div class="col-sm-5>
+                    
+                    
+                    <div class="col">
+                         <h1>Enter payee's details</h1>
                          <h3>To Card</h3>
                          <label for="fname">Name:</label><br>
                         <input type="text" name="name2" value="test user2"><br>
@@ -183,12 +173,17 @@
                         <label for="lname">Issuer Name:</label><br>
                         <input type="text" name="issueNumber2" value="01"><br>
                     </div>
+                    
                 </div>
+                
+                <div class="amount">
+                    <h3>Amount:</h3>
+                    <input type="number" name="amount" value=50><br><br>
+                    <input type="hidden" name="action" value="transaction">
+                    <input type="submit" value="Submit">
+                </div>
+                
             </div>
-            <h3>Amount:</h3>
-            <input type="number" name="amount" value=50><br><br>
-            <input type="hidden" name="action" value="transaction">
-            <input type="submit" value="Submit">
         </form> 
 
 
@@ -209,7 +204,7 @@
             <% //    Files.write(Paths.get("web\src\main\resources\transactions-register.txt"), (reply.toString()).getBytes(), StandardOpenOption.APPEND);
 %>
             
-            <form action="./first.jsp" method="post">
+            <form action="./home.jsp" method="post">
                 <input type="hidden" name="name3" value=<%=cardTo.getName()%>>
                 <input type="hidden" name="endDate3" value=<%=cardTo.getEndDate()%>>
                 <input type="hidden" name="cardnumber3" value=<%=cardTo.getCardnumber()%>>
@@ -235,13 +230,7 @@
         <%=cardTo%> <br>
         <% }%>
         </div>
-        
-        
-        
-        <footer class="footer-basic" style="border-color: rgb(255,255,255);padding: 10px 0px;background: rgb(30,33,103);">
-            <p class="font-monospace text-center copyright" style="margin: 0px;color: rgb(255,255,255);">Bank Application is using copyrighted content under Fair Use and Fair Dealing doctrines. This website has been created only for educational purposes and it will never be published.</p>
-            <p class="copyright" style="margin: 10px;margin-bottom: 0px;color: rgb(255,255,255);">Bank Application&nbsp; 2021</p>
-        </footer>
+
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
