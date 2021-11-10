@@ -110,129 +110,62 @@
 %>
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>bank</title>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>bank</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-
-<body>
-    <div id="homeBackground">
-        <nav class="navbar navbar-light navbar-expand-md" style="background: #1e2167;color: rgb(255,255,255);">
-            <div class="container-fluid"><a class="navbar-brand" href="index.html" style="color: rgba(255,255,255,0.9);">Bank Application</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="navbar-nav" style="color: rgb(255,255,255);">
-                        <li class="nav-item"><a class="nav-link" href="#" style="color: rgb(255,255,255);">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" style="color: rgb(255,255,255);">Bank accounts</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" style="color: rgb(255,255,255);">Transactions</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" style="color: rgb(255,255,255);">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" style="color: rgb(255,255,255);">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
-        <div>
-            
-
-        <form action="./home.jsp" method="post">
-            <div class="container">
-                <div class="row">
-                    
-                    <div class="col">
-                         <h1>Enter payer's details</h1>
-                         <h3>From Card</h3>
-                         <label for="fname">Name:</label><br>
-                        <input type="text" name="name1" value="test user1"><br>
-                        <label for="lname">End date:</label><br>
-                        <input type="text" name="endDate1" value="11/21"><br>
-                        <label for="lname">Card Number:</label><br>
-                        <input type="text" name="cardnumber1" value="5133880000000012"><br>
-                        <label for="fname">CVV:</label><br>
-                        <input type="text" name="cvv1" value="123"><br>
-                        <label for="lname">Issuer Name:</label><br>
-                        <input type="text" name="issueNumber1" value="01"><br>
-                    </div>
-                    
-                    
-                    <div class="col">
-                         <h1>Enter payee's details</h1>
-                         <h3>To Card</h3>
-                         <label for="fname">Name:</label><br>
-                        <input type="text" name="name2" value="test user2"><br>
-                        <label for="lname">End date:</label><br>
-                        <input type="text" name="endDate2" value="11/21"><br>
-                        <label for="lname">Card Number:</label><br>
-                        <input type="text" name="cardnumber2" value="4285860000000021"><br>
-                        <label for="fname">CVV:</label><br>
-                        <input type="text" name="cvv2" value="123"><br>
-                        <label for="lname">Issuer Name:</label><br>
-                        <input type="text" name="issueNumber2" value="01"><br>
-                    </div>
-                    
-                </div>
-                
-                <div class="amount">
-                    <h3>Amount:</h3>
-                    <input type="number" name="amount" value=50><br><br>
-                    <input type="hidden" name="action" value="transaction">
-                    <input type="submit" value="Submit">
-                </div>
-                
-            </div>
-        </form> 
+    <body>
+        <div id="homeBackground">
+            <jsp:include page="navbar.jsp" />
 
 
 
+            <jsp:include page="mainForm.jsp" />
 
-        <% if (("transaction".equals(action))) {%>
 
-        <%=cardFrom%> <br>
+            <% if (("transaction".equals(action))) {%>
 
-        <%=cardTo%> <br>
+            <%=cardFrom%> <br>
 
-        <h6><%= reply.toString()%> <br></h6>
+            <%=cardTo%> <br>
 
-            <% if (reply.getStatus().equals(BankTransactionStatus.SUCCESS)) {%>
+            <h6><%= reply.toString()%> <br></h6>
 
-            <h1><%= reply.getAmount()%> POUNDS WERE SUCCESFULLY TRANFERED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%></h1>
+                <% if (reply.getStatus().equals(BankTransactionStatus.SUCCESS)) {%>
 
-            <% //    Files.write(Paths.get("web\src\main\resources\transactions-register.txt"), (reply.toString()).getBytes(), StandardOpenOption.APPEND);
-%>
-            
-            <form action="./home.jsp" method="post">
-                <input type="hidden" name="name3" value=<%=cardTo.getName()%>>
-                <input type="hidden" name="endDate3" value=<%=cardTo.getEndDate()%>>
-                <input type="hidden" name="cardnumber3" value=<%=cardTo.getCardnumber()%>>
-                <input type="hidden" name="cvv3" value=<%=cardTo.getCvv()%>>
-                <input type="hidden" name="issueNumber3" value=<%=cardTo.getIssueNumber()%>>
-                <input type="hidden" name="name4" value=<%=cardFrom.getName()%>>
-                <input type="hidden" name="endDate4" value=<%=cardFrom.getEndDate()%>>
-                <input type="hidden" name="cardnumber4" value=<%=cardFrom.getCardnumber()%>>
-                <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
-                <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
-                <input type="hidden" name="action" value="refund"> 
-                <button type="submit" >Refund Transaction!</button>
-            </form>
+                <h1><%= reply.getAmount()%> POUNDS WERE SUCCESSFULLY TRANSFERRED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%></h1>
 
-            <%} else if (reply.getStatus().equals(BankTransactionStatus.FAIL)) {%>
-            <h1>No transaction was made</h1>
+                <form action="./home.jsp" method="post">
+                    <input type="hidden" name="name3" value=<%=cardTo.getName()%>>
+                    <input type="hidden" name="endDate3" value=<%=cardTo.getEndDate()%>>
+                    <input type="hidden" name="cardnumber3" value=<%=cardTo.getCardnumber()%>>
+                    <input type="hidden" name="cvv3" value=<%=cardTo.getCvv()%>>
+                    <input type="hidden" name="issueNumber3" value=<%=cardTo.getIssueNumber()%>>
+                    <input type="hidden" name="name4" value=<%=cardFrom.getName()%>>
+                    <input type="hidden" name="endDate4" value=<%=cardFrom.getEndDate()%>>
+                    <input type="hidden" name="cardnumber4" value=<%=cardFrom.getCardnumber()%>>
+                    <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
+                    <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
+                    <input type="hidden" name="action" value="refund"> 
+                    <button type="submit" >Refund Transaction!</button>
+                </form>
 
+                <%} else if (reply.getStatus().equals(BankTransactionStatus.FAIL)) {%>
+                <h1>No transaction was made</h1>
+
+                <% }%>
+            <% }if (("refund".equals(action))) {%>
+            <h1>Lo hicsite wacho</h1> <br>
+             <%=cardFrom%> <br>
+
+            <%=cardTo%> <br>
             <% }%>
-        <% }if (("refund".equals(action))) {%>
-        <h1>Lo hicsite wacho</h1> <br>
-         <%=cardFrom%> <br>
-
-        <%=cardTo%> <br>
-        <% }%>
         </div>
-
-    </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
-
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    </body>
 </html>
