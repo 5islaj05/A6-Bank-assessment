@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.solent.ood.simplepropertiesdaowebapp.dao.test.PropertiesDaoTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.687 s - in org.solent.ood.simplepropertiesdaowebapp.dao.test.PropertiesDaoTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.716 s - in org.solent.ood.simplepropertiesdaowebapp.dao.test.PropertiesDaoTest
