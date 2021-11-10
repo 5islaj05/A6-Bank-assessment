@@ -24,7 +24,7 @@ public class BankClientTest {
 
     final static Logger LOG = LogManager.getLogger(BankClientTest.class);
 
-    String bankUrl = "http://localhost:8080/bank/rest";
+    String bankUrl = "http://localhost:8080/bank/rest ";
     CreditCard fromCard = null;
     CreditCard toCard = null;
     

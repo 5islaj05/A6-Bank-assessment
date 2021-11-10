@@ -1,3 +1,6 @@
+<%@page import="java.nio.file.StandardOpenOption"%>
+<%@page import="java.nio.file.Paths"%>
+<%@page import="java.nio.file.Files"%>
 <%@page import="java.util.function.Function"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -23,10 +26,13 @@
 <%@ page import="org.solent.com504.oodd.bank.model.dto.TransactionReplyMessage" %>
 
 
+<%@ page import="org.apache.logging.log4j.LogManager" %>
+<%@ page import="org.apache.logging.log4j.Logger" %>
 
 
 <%
-    String bankUrl = "http://localhost:8080/bank/rest";
+    //String bankUrl = "http://localhost:8080/bank/rest";
+    String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";
     BankRestClient client = new BankRestClientImpl(bankUrl);
 
     TransactionReplyMessage reply = null;
@@ -36,6 +42,8 @@
 
     CreditCard cardFrom = null;
     CreditCard cardTo = null;
+    
+  //  final Logger LOG = LogManager.getLogger(BankClientTest.class);
 
     if ("transaction".equals(action)) {
 
@@ -76,8 +84,38 @@
         // client.transferMoney(cardFrom, cardTo, amount);
     } else if ("refund".equals(action)) {
 
+        String name3 = request.getParameter("name3");
+        String endDate3 = request.getParameter("endDate3");
+        String cardnumber3 = request.getParameter("cardnumber3");
+        String cvv3 = request.getParameter("cvv3");
+        String issueNumber3 = request.getParameter("issueNumber3");
+
         cardFrom = new CreditCard();
+
+        cardFrom.setName(name3);
+        cardFrom.setEndDate(endDate3);
+        cardFrom.setCardnumber(cardnumber3);
+        cardFrom.setCvv(cvv3);
+        cardFrom.setIssueNumber(issueNumber3);
+
+        //Card To
+        String name4 = request.getParameter("name4");
+        String endDate4 = request.getParameter("endDate4");
+        String cardnumber4 = request.getParameter("cardnumber4");
+        String cvv4 = request.getParameter("cvv4");
+        String issueNumber4 = request.getParameter("issueNumber4");
+
         cardTo = new CreditCard();
+
+        cardTo.setName(name4);
+        cardTo.setEndDate(endDate4);
+        cardTo.setCardnumber(cardnumber4);
+        cardTo.setCvv(cvv4);
+        cardTo.setIssueNumber(issueNumber4);
+
+        Double amount = 50.0;
+
+        reply = client.transferMoney(cardFrom, cardTo, amount);
 
     }
 
@@ -141,30 +179,38 @@
 
         <h6><%= reply.toString()%> <br></h6>
 
-        <% if (reply.getStatus().equals(BankTransactionStatus.SUCCESS)) {%>
+            <% if (reply.getStatus().equals(BankTransactionStatus.SUCCESS)) {%>
 
-        <h1><%= reply.getAmount() %> POUNDS WERE SUCCESFULLY TRANFERED FROM <%= reply.getFromCardNo() %> TO <%= reply.getToCardNo() %></h1>
-        
-        <form action="./first.jsp" method="post">
-            <input type="hidden" name="name" value=<%=cardTo%>>
-            <input type="hidden" name="endDate" value=<%=cardFrom%>>
-            <input type="hidden" name="action" value="refund">
-            <input type="hidden" name="newCardFrom" value=<%=cardTo%>>
-            <input type="hidden" name="newCardTo" value=<%=cardFrom%>>
-            <input type="hidden" name="action" value="refund">
-            <input type="hidden" name="newCardFrom" value=<%=cardTo%>>
-            <input type="hidden" name="newCardTo" value=<%=cardFrom%>>
-            <input type="hidden" name="action" value="refund">
-            <input type="hidden" name="action" value="refund"> 
-            <button type="submit" >Refund Transaction!</button>
-        </form>
+            <h1><%= reply.getAmount()%> POUNDS WERE SUCCESFULLY TRANFERED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%></h1>
 
-        <%} else if (reply.getStatus().equals(BankTransactionStatus.FAIL)) {%>
-        <h1>No transaction was made</h1>
+            <% //    Files.write(Paths.get("web\src\main\resources\transactions-register.txt"), (reply.toString()).getBytes(), StandardOpenOption.APPEND);
+%>
+            
+            <form action="./first.jsp" method="post">
+                <input type="hidden" name="name3" value=<%=cardTo.getName()%>>
+                <input type="hidden" name="endDate3" value=<%=cardTo.getEndDate()%>>
+                <input type="hidden" name="cardnumber3" value=<%=cardTo.getCardnumber()%>>
+                <input type="hidden" name="cvv3" value=<%=cardTo.getCvv()%>>
+                <input type="hidden" name="issueNumber3" value=<%=cardTo.getIssueNumber()%>>
+                <input type="hidden" name="name4" value=<%=cardFrom.getName()%>>
+                <input type="hidden" name="endDate4" value=<%=cardFrom.getEndDate()%>>
+                <input type="hidden" name="cardnumber4" value=<%=cardFrom.getCardnumber()%>>
+                <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
+                <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
+                <input type="hidden" name="action" value="refund"> 
+                <button type="submit" >Refund Transaction!</button>
+            </form>
 
+            <%} else if (reply.getStatus().equals(BankTransactionStatus.FAIL)) {%>
+            <h1>No transaction was made</h1>
+
+            <% }%>
+        <% }if (("refund".equals(action))) {%>
+        <h1>Lo hicsite wacho</h1> <br>
+         <%=cardFrom%> <br>
+
+        <%=cardTo%> <br>
         <% }%>
-        <% }%>
-
     </body>
 </html>
 
