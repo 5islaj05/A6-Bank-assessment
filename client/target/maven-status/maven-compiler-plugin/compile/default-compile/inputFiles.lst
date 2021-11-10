@@ -1,0 +1,10 @@
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/password/PasswordUtils.java
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/bank/client/impl/BankRestClientImpl.java
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/bank/model/dto/BankTransaction.java
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/bank/model/client/BankRestClient.java
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/bank/model/dto/BankTransactionStatus.java
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/bank/model/dto/TransactionRequestMessage.java
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/bank/model/dto/TransactionReplyMessage.java
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/bank/model/dto/CreditCard.java
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/bank/model/dto/BankAccount.java
+/home/hakeem/src/OODAssignment-Personal-/assignment/client/src/main/java/org/solent/com504/oodd/bank/model/dto/User.java
