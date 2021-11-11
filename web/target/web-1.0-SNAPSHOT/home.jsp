@@ -34,79 +34,92 @@
     //String bankUrl = "http://localhost:8080/bank/rest";
     String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";
     BankRestClient client = new BankRestClientImpl(bankUrl);
+
     TransactionReplyMessage reply = null;
+
     String action = null;
     action = request.getParameter("action");
+
     CreditCard cardFrom = null;
     CreditCard cardTo = null;
     
   //  final Logger LOG = LogManager.getLogger(BankClientTest.class);
+
     if ("transaction".equals(action)) {
+
         //Card From
         String name1 = request.getParameter("name1");
         String endDate1 = request.getParameter("endDate1");
         String cardnumber1 = request.getParameter("cardnumber1");
         String cvv1 = request.getParameter("cvv1");
         String issueNumber1 = request.getParameter("issueNumber1");
+
         cardFrom = new CreditCard();
+
         cardFrom.setName(name1);
         cardFrom.setEndDate(endDate1);
         cardFrom.setCardnumber(cardnumber1);
         cardFrom.setCvv(cvv1);
         cardFrom.setIssueNumber(issueNumber1);
-        
+
         //Card To
         String name2 = request.getParameter("name2");
         String endDate2 = request.getParameter("endDate2");
         String cardnumber2 = request.getParameter("cardnumber2");
         String cvv2 = request.getParameter("cvv2");
         String issueNumber2 = request.getParameter("issueNumber2");
+
         cardTo = new CreditCard();
+
         cardTo.setName(name2);
         cardTo.setEndDate(endDate2);
         cardTo.setCardnumber(cardnumber2);
         cardTo.setCvv(cvv2);
         cardTo.setIssueNumber(issueNumber2);
-        
+
         //Amount
-        String amountString = request.getParameter("amount");
-        double amount = Double.parseDouble(amountString);
-        
+        Double amount = 50.0;
+
         reply = client.transferMoney(cardFrom, cardTo, amount);
-        
         // client.transferMoney(cardFrom, cardTo, amount);
     } else if ("refund".equals(action)) {
+
         String name3 = request.getParameter("name3");
         String endDate3 = request.getParameter("endDate3");
         String cardnumber3 = request.getParameter("cardnumber3");
         String cvv3 = request.getParameter("cvv3");
         String issueNumber3 = request.getParameter("issueNumber3");
+
         cardFrom = new CreditCard();
+
         cardFrom.setName(name3);
         cardFrom.setEndDate(endDate3);
         cardFrom.setCardnumber(cardnumber3);
         cardFrom.setCvv(cvv3);
         cardFrom.setIssueNumber(issueNumber3);
-        
+
         //Card To
         String name4 = request.getParameter("name4");
         String endDate4 = request.getParameter("endDate4");
         String cardnumber4 = request.getParameter("cardnumber4");
         String cvv4 = request.getParameter("cvv4");
         String issueNumber4 = request.getParameter("issueNumber4");
+
         cardTo = new CreditCard();
+
         cardTo.setName(name4);
         cardTo.setEndDate(endDate4);
         cardTo.setCardnumber(cardnumber4);
         cardTo.setCvv(cvv4);
         cardTo.setIssueNumber(issueNumber4);
-        
-//        Amount
-        String amountString = request.getParameter("amount");
-        double amount = Double.parseDouble(amountString);
-        
+
+        Double amount = 50.0;
+
         reply = client.transferMoney(cardFrom, cardTo, amount);
+
     }
+
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,6 +134,7 @@
 
     <body>
         <div id="homeBackground">
+            
             <jsp:include page="navbar.jsp" />
 
 
@@ -159,12 +173,12 @@
                 <h1>No transaction was made</h1>
 
                 <% }%>
-            <% }if (("refund".equals(action))) {%>
-            <h1>Lo hicsite wacho</h1> <br>
-             <%=cardFrom%> <br>
+                <% }if (("refund".equals(action))) {%>
+                <h1>Lo hicsite wacho</h1> <br>
+                 <%=cardFrom%> <br>
 
-            <%=cardTo%> <br>
-            <% }%>
+                <%=cardTo%> <br>
+                <% }%>
         </div>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     </body>
