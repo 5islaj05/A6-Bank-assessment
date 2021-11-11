@@ -24,7 +24,7 @@ body {
 #indexBackground {
   display: block;
   margin: auto;
-  width: 100%;
+  width: 50%;
   height: 100%;
   background-image: url('../../assets/img/backgroundImage.png');
 }
@@ -47,7 +47,7 @@ body {
 #homeBackground {
   display: block;
   margin: auto;
-  width: 100%;
+  width: 75%;
   height: 100%;
   background-image: url('../../assets/img/backgroundImage.png');
 }
@@ -70,7 +70,7 @@ a {
 
 .row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .container{
