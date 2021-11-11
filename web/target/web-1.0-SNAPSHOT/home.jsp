@@ -18,12 +18,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@ page import="org.solent.com504.oodd.bank.model.dto.CreditCard" %>
-<%@ page import="org.solent.com504.oodd.bank.client.impl.BankRestClientImpl" %>
-<%@ page import="org.solent.com504.oodd.bank.model.client.BankRestClient" %>
+<%@ page import="org.bank.model.dto.CreditCard" %>
+<%@ page import="org.bank.client.impl.BankRestClientImpl" %>
+<%@ page import="org.bank.model.client.BankRestClient" %>
 
-<%@ page import="org.solent.com504.oodd.bank.model.dto.BankTransactionStatus" %>
-<%@ page import="org.solent.com504.oodd.bank.model.dto.TransactionReplyMessage" %>
+<%@ page import="org.bank.model.dto.BankTransactionStatus" %>
+<%@ page import="org.bank.model.dto.TransactionReplyMessage" %>
 
 
 <%@ page import="org.apache.logging.log4j.LogManager" %>

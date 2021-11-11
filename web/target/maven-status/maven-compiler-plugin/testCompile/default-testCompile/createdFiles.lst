@@ -1,2 +1,2 @@
-org\solent\ood\simplepropertiesdaowebapp\dao\test\WebObjectFactoryTest.class
-org\solent\ood\simplepropertiesdaowebapp\dao\test\PropertiesDaoTest.class
+org\bank\dao\test\WebObjectFactoryTest.class
+org\bank\dao\test\PropertiesDaoTest.class

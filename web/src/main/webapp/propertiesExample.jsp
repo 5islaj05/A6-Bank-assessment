@@ -4,7 +4,7 @@
     Author     : cgallen
 --%>
 
-<%@page import="org.solent.com504.oodd.bank.model.dto.*"%>
+<%@page import="org.bank.model.dto.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String reply = "Null";
