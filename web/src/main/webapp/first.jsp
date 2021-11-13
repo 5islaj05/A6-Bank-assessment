@@ -3,6 +3,8 @@
 <%@page import="java.nio.file.Paths"%>
 <%@page import="java.nio.file.Files"%>
 <%@page import="java.util.function.Function"%>
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <%-- 
@@ -29,6 +31,9 @@
 <link rel="stylesheet" href="assets/css/styles.css">
 
 <%
+    
+   // final Logger LOG = LogManager.getLogger(first.);
+    
     //String bankUrl = "http://localhost:8080/bank/rest";
     String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";
 
@@ -149,10 +154,6 @@
                             <%= reply.getAmount()%> POUNDS WERE SUCCESFULLY TRANFERED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%>
 
 
-
-
-
-
                             <form action="./first.jsp" method="post">
                                 <input type="hidden" name="name3" value=<%=cardTo.getName()%>>
                                 <input type="hidden" name="endDate3" value=<%=cardTo.getEndDate()%>>
@@ -176,10 +177,7 @@
                             <a class="close" data-dismiss="alert" href="#">×</a>No transaction was made <br>
                             <%= reply.getMessage().substring(0, 24) %>
                         </div>
-                        
-                        
-                        
-                        
+                      
 
                         <% }%>
                         <% } %>
