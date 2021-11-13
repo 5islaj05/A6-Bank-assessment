@@ -134,64 +134,65 @@
                         <h1 class="card-title">Lets TRanfer some Moneys</h1>
                         <hr>
 
-                         <% if (("transaction".equals(action))) {%>
+                        <% if (("transaction".equals(action))) {%>
 
-        <%=cardFrom%> <br>
+                        <%=cardFrom%> <br>
 
-        <%=cardTo%> <br>
+                        <%=cardTo%> <br>
 
-        <h6><%= reply.toString()%> <br></h6>
+                        <h6><%= reply.toString()%> <br></h6>
 
-        <% if (reply.getStatus().equals(BankTransactionStatus.SUCCESS)) {%>
+                        <% if (reply.getStatus().equals(BankTransactionStatus.SUCCESS)) {%>
 
-        <div class="alert alert-info">
-            <a class="close" data-dismiss="alert" href="#">×</a>
-            <%= reply.getAmount()%> POUNDS WERE SUCCESFULLY TRANFERED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%>
-
-
+                        <div class="alert alert-info">
+                            <a class="close" data-dismiss="alert" href="#">×</a>
+                            <%= reply.getAmount()%> POUNDS WERE SUCCESFULLY TRANFERED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%>
 
 
 
 
-            <form action="./first.jsp" method="post">
-                <input type="hidden" name="name3" value=<%=cardTo.getName()%>>
-                <input type="hidden" name="endDate3" value=<%=cardTo.getEndDate()%>>
-                <input type="hidden" name="cardnumber3" value=<%=cardTo.getCardnumber()%>>
-                <input type="hidden" name="cvv3" value=<%=cardTo.getCvv()%>>
-                <input type="hidden" name="issueNumber3" value=<%=cardTo.getIssueNumber()%>>
-                <input type="hidden" name="name4" value=<%=cardFrom.getName()%>>
-                <input type="hidden" name="endDate4" value=<%=cardFrom.getEndDate()%>>
-                <input type="hidden" name="cardnumber4" value=<%=cardFrom.getCardnumber()%>>
-                <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
-                <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
-                <input type="hidden" name="action" value="refund"> 
-                <button type="submit" >Refund Transaction!</button>
-            </form>
-
-        </div>
-
-        <%} else if (reply.getStatus().equals(BankTransactionStatus.FAIL)) {%>
-
-        <div class="alert alert-danger" role="alert">
-            <a class="close" data-dismiss="alert" href="#">×</a>
-
-            No transaction was made
-        </div>
-
-        <% }%>
-        <% }
-            if (("refund".equals(action))) {%>
-
-                <div  class="alert alert-success" role="alert">
-                    <a class="close" data-dismiss="alert" href="#">×</a>
-
-                    Refund Done 
-                </div>
 
 
-        <% }%>
+                            <form action="./first.jsp" method="post">
+                                <input type="hidden" name="name3" value=<%=cardTo.getName()%>>
+                                <input type="hidden" name="endDate3" value=<%=cardTo.getEndDate()%>>
+                                <input type="hidden" name="cardnumber3" value=<%=cardTo.getCardnumber()%>>
+                                <input type="hidden" name="cvv3" value=<%=cardTo.getCvv()%>>
+                                <input type="hidden" name="issueNumber3" value=<%=cardTo.getIssueNumber()%>>
+                                <input type="hidden" name="name4" value=<%=cardFrom.getName()%>>
+                                <input type="hidden" name="endDate4" value=<%=cardFrom.getEndDate()%>>
+                                <input type="hidden" name="cardnumber4" value=<%=cardFrom.getCardnumber()%>>
+                                <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
+                                <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
+                                <input type="hidden" name="action" value="refund"> 
+                                <button type="submit" >Refund Transaction!</button>
+                            </form>
+
+                        </div>
+
+                        <%} else if (reply.getStatus().equals(BankTransactionStatus.FAIL)) {%>
+
+                        <div class="alert alert-danger" role="alert">
+                            <a class="close" data-dismiss="alert" href="#">×</a>No transaction was made <br>
+                            <%= reply.getMessage().substring(0, 24) %>
+                        </div>
                         
                         
+                        
+                        
+
+                        <% }%>
+                        <% } %>
+                        <%if (("refund".equals(action))) {%>
+
+                        <div  class="alert alert-success" role="alert">
+                            <a class="close" data-dismiss="alert" href="#">×</a>Refund Done 
+                        </div>
+
+
+                        <% }%>
+
+
 
                         <form action="./first.jsp" method="post">
                             <div class="row">
@@ -275,7 +276,7 @@
 
 
 
-       
+
 
 
     </body>
