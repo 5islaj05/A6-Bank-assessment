@@ -1,0 +1,76 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14 Nov 2021, 09:39:53
+    Author     : jamil
+
+*/
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  height: 100vh;
+}
+
+
+.overlay1 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+   z-index:999;
+}
+.overlay1:target {
+  visibility: visible;
+  opacity: 1;
+   z-index:999;
+}
+
+.popup1 {
+  top:0;
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup1 .close1 {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup1 .close1:hover {
+  color: #06D85F;
+}
+.popup1 .content {
+  top:0;
+  max-height: 30%;
+  overflow: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 700px){
+  .popup1 {
+    width: 70%;
+   top:0;
+   
+  }
+  
+}
