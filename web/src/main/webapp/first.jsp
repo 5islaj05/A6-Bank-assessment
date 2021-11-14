@@ -33,37 +33,27 @@
 <%
     // IN CASE THE USER LOGGED IN
 
-
     //Takes user and pass from index form
     String user = null;
     String password = null;
-    
-    if( request.getParameter("user")!= null){
-    
-      user = request.getParameter("user");
-      password = request.getParameter("password");
+
+    if (request.getParameter("user") != null) {
+
+        user = request.getParameter("user");
+        password = request.getParameter("password");
     }
 
-    String sessionUser = (String)session.getAttribute("sessionUser");
+    String sessionUser = (String) session.getAttribute("sessionUser");
 
-    if( sessionUser == null){
+    if (sessionUser == null) {
 
         session.setAttribute("sessionUser", user);
         session.setAttribute("sessionPassword", password);
         System.out.println("METEMOS USER Y PASS EN SESION");
-        
+        System.out.println((String) session.getAttribute("sessionUser"));
+        System.out.println((String) session.getAttribute("sessionPassword"));
     }
 
-
-
-    /* String user = request.getParameter("user");
-    String password = request.getParameter("password");
-
-
-
-
-
-    user = (String) session.getAttribute("user");*/
 
     String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";
 
@@ -111,16 +101,19 @@
         cardTo.setIssueNumber(issueNumber2);
 
         //Amount
-        Double amount = 50.0;
+        Double amount = Double.valueOf(request.getParameter("amount"));
 
         if (session.getAttribute("sessionUser") == null) {
-            System.out.println("PRIMERO");
-            System.out.println("EL VALOR DE USER ES" + user);
+            System.out.println("TRANFIERE SIN AUTENTICAR");
             reply = client.transferMoney(cardFrom, cardTo, amount);
 
         } else {
-            System.out.println("SEGUNDO");
-            reply = client.transferMoney(cardFrom, cardTo, amount, user, password);
+            System.out.println("SI TRANFIERE CON AUTENTICAR");
+            System.out.println(user);
+            System.out.println(password);
+            System.out.println((String)session.getAttribute("sessionUser"));
+            System.out.println((String)session.getAttribute("sessionPassword"));
+            reply = client.transferMoney(cardFrom, cardTo, amount,(String)session.getAttribute("sessionUser"), (String)session.getAttribute("sessionPassword"));
             if (reply.getStatus() == null) {
                 reply.setStatus(BankTransactionStatus.FAIL);
             }
@@ -330,6 +323,15 @@
                                         <input type="text" class="form-control" name="issueNumber2" value="01">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row pt-5 pb-5 mb-5 ">
+                                <div class="col">
+                                    <div class="mb-2">
+                                        <h3>Amount</h3>
+                                        <input type="number" class="form-control" name="amount" value="50">$
+                                    </div>
+                                </div>
+
                             </div>
                             <input type="hidden" name="action" value="transaction">
                             <button type="submit" class="btn btn-primary">Submit</button>
