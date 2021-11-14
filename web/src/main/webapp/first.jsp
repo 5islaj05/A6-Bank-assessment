@@ -53,7 +53,7 @@
 
         //Amount
         Double amount = Double.valueOf(request.getParameter("amount"));
-
+    
         //Card From
         String name1 = request.getParameter("name1");
         String endDate1 = request.getParameter("endDate1");
@@ -163,7 +163,7 @@
                                 <input type="hidden" name="cardnumber4" value="<%=cardFrom.getCardnumber()%>">
                                 <input type="hidden" name="cvv4" value="<%=cardFrom.getCvv()%>">
                                 <input type="hidden" name="issueNumber4" value="<%=cardFrom.getIssueNumber()%>">
-                                <input type="hidden" name="amount" value="<%=reply.getAmount()%>">
+                                <input type="hidden" name="amount" min="1.0" value="<%=reply.getAmount()%>">
                                 <input type="hidden" name="action" value="refund"> 
                                 <button class="btn btn-primary" type="submit" >Refund Transaction!</button>   <a class="btn btn-primary" href="#popup1">Transaction info</a>
                             </form>
@@ -233,25 +233,25 @@
                                         <div class="label-container">
                                             <label>Card Number</label>
                                         </div>
-                                        <input type="text" class="form-control" name="cardnumber1" value="5133880000000012">
+                                        <input type="number" class="form-control" name="cardnumber1" value="5133880000000012">
                                     </div>
                                     <div class="mb-2">
                                         <div class="label-container">
                                             <label>CVV</label>
                                         </div>
-                                        <input type="text" class="form-control" name="cvv1" value="123">
+                                        <input type="number" class="form-control" name="cvv1" value="123">
                                     </div>
                                     <div class="mb-2">
                                         <div class="label-container">
                                             <label>Issuer Number</label>
                                         </div>
-                                        <input type="text" class="form-control" name="issueNumber1" value="01">
+                                        <input type="number" class="form-control" name="issueNumber1" value="01">
                                     </div>
                                     <div class="mb-2">
                                         <div class="label-container">
                                             <label>Amount (£)</label>
                                         </div>
-                                        <input type="text" class="form-control" name="amount" value="">
+                                        <input type="number" class="form-control" min="1.0" name="amount" value="1.0">
                                     </div>     
                                 </div>
 
