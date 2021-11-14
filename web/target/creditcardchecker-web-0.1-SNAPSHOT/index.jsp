@@ -17,35 +17,34 @@
         <link rel="stylesheet" href="assets/css/Footer-Basic.css">
         <link rel="stylesheet" href="assets/css/styles.css">
     </head>
-    <body style="opacity: 1;height: 100vh;font-size: 16px;">
-    <div class="container mt-2">
-	<div class="row justify-content-center align-items-center text-center p-2">
-		<div class="m-1 col-sm-8 col-md-6 col-lg-4 shadow-sm p-3 mb-5 bg-white border rounded">
-			<div class="pt-5 pb-5">
-				<p class="text-center text-uppercase mt-3">Would you like to set your bussinnes bank account?</p>
-				<form class="form text-center" action="#" method="POST">
-					<div class="form-group input-group-md">
-						<input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-						<!--<div class="invalid-feedback">
-							 Errors in email during form validation, also add .is-invalid class to the input fields
-						</div> -->
-					</div>
-					<div class="form-group input-group-md">
-						<input type="password" class="form-control" id="password" placeholder="Password">
-						<!--<div class="invalid-feedback">
-							 Errors in password during form validation, also add .is-invalid class to the input fields
-						</div> -->
-					</div>
-					<button class="btn btn-lg btn-block btn-primary mt-4" type="submit">
-                        Login
-               </button>
-					<a href="#" class="float-right mt-2">Forgot Password? </a>
-				</form>
-			</div>
-			<a href="#" class="text-center d-block mt-2">Create an account? </a>
-		</div>
-	</div>
-</div>
-</body>
+    <body style="opacity: 1;font-size: 16px;">
+        <div class="container mt-2">
+            <div class="row justify-content-center align-items-center p-2">
+                <div class="m-1 col-sm-8 col-md-6 col-lg-4 shadow-sm pt-5 pb-5 mb-5 bg-white border rounded">
+                    <p class="text-center text-uppercase mt-3">Would you like to log in with your bank details?</p>
+                    <form class="form " action="./first.jsp" method="POST">
+                        <div class="form-group input-group-md">
+                            <div class="label-container">
+                                <label>User</label>
+                            </div>
+                            <input type="text" class="form-control" name="user" value="testuser2">
+
+                        </div>
+                        <div class="form-group input-group-md">
+                            <div class="label-container">
+                                <label>Password</label>
+                            </div>
+                            <input type="password" class="form-control" name="password" value="defaulttestpass">
+                        </div>
+                        <button class="btn btn-lg btn-block btn-primary mt-4" type="submit">
+                            Login
+                        </button>
+                        <a href="./first.jsp" class="btn btn-lg btn-block btn-success mt-4" role="button">Continue without loging</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 
 </html>

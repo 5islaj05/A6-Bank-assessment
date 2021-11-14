@@ -7,7 +7,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-<%-- 
+<%--
     Document   : first
     Created on : 3 nov. 2021, 12:49:25
     Author     : guill
@@ -31,10 +31,40 @@
 <link rel="stylesheet" href="assets/css/styles.css">
 
 <%
+    // IN CASE THE USER LOGGED IN
+
+
+    //Takes user and pass from index form
+    String user = null;
+    String password = null;
     
-   // final Logger LOG = LogManager.getLogger(first.);
+    if( request.getParameter("user")!= null){
     
-    //String bankUrl = "http://localhost:8080/bank/rest";
+      user = request.getParameter("user");
+      password = request.getParameter("password");
+    }
+
+    String sessionUser = (String)session.getAttribute("sessionUser");
+
+    if( sessionUser == null){
+
+        session.setAttribute("sessionUser", user);
+        session.setAttribute("sessionPassword", password);
+        System.out.println("METEMOS USER Y PASS EN SESION");
+        
+    }
+
+
+
+    /* String user = request.getParameter("user");
+    String password = request.getParameter("password");
+
+
+
+
+
+    user = (String) session.getAttribute("user");*/
+
     String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";
 
     BankRestClient client = new BankRestClientImpl(bankUrl);
@@ -83,7 +113,22 @@
         //Amount
         Double amount = 50.0;
 
-        reply = client.transferMoney(cardFrom, cardTo, amount);
+        if (session.getAttribute("sessionUser") == null) {
+            System.out.println("PRIMERO");
+            System.out.println("EL VALOR DE USER ES" + user);
+            reply = client.transferMoney(cardFrom, cardTo, amount);
+
+        } else {
+            System.out.println("SEGUNDO");
+            reply = client.transferMoney(cardFrom, cardTo, amount, user, password);
+            if (reply.getStatus() == null) {
+                reply.setStatus(BankTransactionStatus.FAIL);
+            }
+
+        }
+
+        System.out.println(reply);
+
         // client.transferMoney(cardFrom, cardTo, amount);
     } else if ("refund".equals(action)) {
 
@@ -120,6 +165,10 @@
 
         reply = client.transferMoney(cardFrom, cardTo, amount);
 
+    } else if ("logout".equals(action)) {
+
+        session.setAttribute("sessionUser", null);
+        session.setAttribute("sessionPassword", null);
     }
 
 
@@ -138,12 +187,32 @@
                     <div class="card-body">
                         <h1 class="card-title">Lets TRanfer some Moneys</h1>
                         <hr>
+                        <% if (session.getAttribute("sessionUser") == null) { %>
+                        Not logged in
+                        <% } else {%>
+
+                        Logged as <%= session.getAttribute("sessionUser")%>
+
+
+
+                        <form action="./first.jsp" method="post">
+                            <div class="row">
+                                <div>
+                                    <input type="hidden" class="form-control" name="action" value="logout">
+                                    <button class="btn btn-lg btn-block btn-danger mt-4" type="submit">
+                                        Log out
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+                        <% }%>
+
+                        <hr>
 
                         <% if (("transaction".equals(action))) {%>
-
-                        <%=cardFrom%> <br>
-
-                        <%=cardTo%> <br>
 
                         <h6><%= reply.toString()%> <br></h6>
 
@@ -165,7 +234,7 @@
                                 <input type="hidden" name="cardnumber4" value=<%=cardFrom.getCardnumber()%>>
                                 <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
                                 <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
-                                <input type="hidden" name="action" value="refund"> 
+                                <input type="hidden" name="action" value="refund">
                                 <button type="submit" >Refund Transaction!</button>
                             </form>
 
@@ -175,16 +244,16 @@
 
                         <div class="alert alert-danger" role="alert">
                             <a class="close" data-dismiss="alert" href="#">×</a>No transaction was made <br>
-                            <%= reply.getMessage().substring(0, 24) %>
+                            <%= reply.getMessage().substring(0, 24)%>
                         </div>
-                      
+
 
                         <% }%>
                         <% } %>
                         <%if (("refund".equals(action))) {%>
 
                         <div  class="alert alert-success" role="alert">
-                            <a class="close" data-dismiss="alert" href="#">×</a>Refund Done 
+                            <a class="close" data-dismiss="alert" href="#">×</a>Refund Done
                         </div>
 
 
