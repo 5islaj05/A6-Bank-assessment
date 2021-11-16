@@ -1,9 +1,7 @@
-<%@page import="java.io.IOException"%>
-<%@page import="java.nio.file.StandardOpenOption"%>
-<%@page import="java.nio.file.Paths"%>
-<%@page import="java.nio.file.Files"%>
-<%@page import="java.util.function.Function"%>
 
+
+
+<%@page import="java.util.logging.Level"%>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -31,8 +29,12 @@
 <link rel="stylesheet" href="assets/css/styles.css">
 
 <%
-    // IN CASE THE USER LOGGED IN
 
+    Logger LOG = LogManager.getLogger(Level.ALL);
+
+    LOG.debug("LOGGER WORKING");
+
+    // IN CASE THE USER LOGGED IN
     //Takes user and pass from index form
     String user = null;
     String password = null;
@@ -49,11 +51,11 @@
 
         session.setAttribute("sessionUser", user);
         session.setAttribute("sessionPassword", password);
-        System.out.println("METEMOS USER Y PASS EN SESION");
-        System.out.println((String) session.getAttribute("sessionUser"));
-        System.out.println((String) session.getAttribute("sessionPassword"));
-    }
 
+        String forLogger1 = (String) session.getAttribute("sessionUser");
+        String forLogger2 = (String) session.getAttribute("sessionPassword");
+        LOG.debug("LOGED IN as USER(" + forLogger1 + ") Password(" + forLogger2 + ")");
+    }
 
     String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";
 
@@ -104,16 +106,17 @@
         Double amount = Double.valueOf(request.getParameter("amount"));
 
         if (session.getAttribute("sessionUser") == null) {
-            System.out.println("TRANFIERE SIN AUTENTICAR");
+
+            LOG.debug("MONEY WAS TRANFERED WITHOUT AUTHENTICATION");
+            
             reply = client.transferMoney(cardFrom, cardTo, amount);
 
         } else {
-            System.out.println("SI TRANFIERE CON AUTENTICAR");
-            System.out.println(user);
-            System.out.println(password);
-            System.out.println((String)session.getAttribute("sessionUser"));
-            System.out.println((String)session.getAttribute("sessionPassword"));
-            reply = client.transferMoney(cardFrom, cardTo, amount,(String)session.getAttribute("sessionUser"), (String)session.getAttribute("sessionPassword"));
+
+            String forLogger1 = (String) session.getAttribute("sessionUser");
+            LOG.debug("MONEY WAS TRANFERED AUTHENTICATED as " + forLogger1);
+
+            reply = client.transferMoney(cardFrom, cardTo, amount, (String) session.getAttribute("sessionUser"), (String) session.getAttribute("sessionPassword"));
             if (reply.getStatus() == null) {
                 reply.setStatus(BankTransactionStatus.FAIL);
             }
@@ -124,6 +127,9 @@
 
         // client.transferMoney(cardFrom, cardTo, amount);
     } else if ("refund".equals(action)) {
+    
+        LOG.debug("MONEY WAS REFUNDED");
+    
 
         String name3 = request.getParameter("name3");
         String endDate3 = request.getParameter("endDate3");
@@ -159,6 +165,8 @@
         reply = client.transferMoney(cardFrom, cardTo, amount);
 
     } else if ("logout".equals(action)) {
+    
+        LOG.debug("USER LOGGED OUT");
 
         session.setAttribute("sessionUser", null);
         session.setAttribute("sessionPassword", null);
@@ -170,7 +178,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Transfer moneys</title>
     </head>
     <body>
 
@@ -178,7 +186,7 @@
             <div class="col-sm-10">
                 <div class="card shadow-lg">
                     <div class="card-body">
-                        <h1 class="card-title">Lets TRanfer some Moneys</h1>
+                        <h1 class="card-title">Transfer funds</h1>
                         <hr>
                         <% if (session.getAttribute("sessionUser") == null) { %>
                         Not logged in
@@ -228,8 +236,10 @@
                                 <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
                                 <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
                                 <input type="hidden" name="action" value="refund">
-                                <button type="submit" >Refund Transaction!</button>
+                                <button type="submit" class="btn btn-primary">Refund Transaction!</button> <a class="btn btn-primary" href="#popup1">Transaction info</a>
                             </form>
+
+
 
                         </div>
 
@@ -341,13 +351,6 @@
             </div>
 
         </div>
-
-
-
-
-
-
-
     </body>
 </html>
 
