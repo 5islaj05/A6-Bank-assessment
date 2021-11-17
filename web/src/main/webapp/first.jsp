@@ -22,6 +22,8 @@
 <%@ page import="org.solent.ood.bank.model.dto.BankTransactionStatus" %>
 <%@ page import="org.solent.ood.bank.model.dto.TransactionReplyMessage" %>
 
+<%@page import="org.solent.ood.creditcardchecker.dao.PropertiesDao" %>
+<%@page import="org.solent.ood.creditcardchecker.dao.WebObjectFactory" %>
 
 <%@ page import="org.apache.logging.log4j.LogManager" %>
 <%@ page import="org.apache.logging.log4j.Logger" %>
@@ -33,25 +35,22 @@
     // IN CASE THE USER LOGGED IN
 
     //Takes user and pass from index form
-    String user = null;
-    String password = null;
 
-    if (request.getParameter("user") != null) {
-
-        user = request.getParameter("user");
-        password = request.getParameter("password");
-    }
-
-    String sessionUser = (String) session.getAttribute("sessionUser");
-
-    if (sessionUser == null) {
-
-        session.setAttribute("sessionUser", user);
-        session.setAttribute("sessionPassword", password);
-        System.out.println("METEMOS USER Y PASS EN SESION");
-        System.out.println((String) session.getAttribute("sessionUser"));
-        System.out.println((String) session.getAttribute("sessionPassword"));
-    }
+//    if (request.getParameter("user") == username and request.getParameter("password") == password) {
+//        
+//        
+//    }
+//
+//    String sessionUser = (String) session.getAttribute("sessionUser");
+//
+//    if (sessionUser == null) {
+//
+//        session.setAttribute("sessionUser", user);
+//        session.setAttribute("sessionPassword", password);
+//        System.out.println("METEMOS USER Y PASS EN SESION");
+//        System.out.println((String) session.getAttribute("sessionUser"));
+//        System.out.println((String) session.getAttribute("sessionPassword"));
+//    }
 
 
     String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";

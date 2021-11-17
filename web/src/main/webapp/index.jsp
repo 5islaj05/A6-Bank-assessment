@@ -5,7 +5,45 @@
     Author     : guill
 --%>
 
+<%@page import="org.solent.ood.creditcardchecker.dao.PropertiesDao" %>
+<%@page import="org.solent.ood.creditcardchecker.dao.WebObjectFactory" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+//    Sets User session to not logged in
+    session.setAttribute("isUserLoggedIn",false);
+    
+    // IN CASE THE USER LOGGED IN
+    PropertiesDao propertiesDao = WebObjectFactory.getPropertiesDao();
+
+    //Takes user and pass from index form
+    String username = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.username");
+    String password = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.password");
+    
+    
+//    Checks if the properties file has a username or password already
+//    If not it will set it to the defaults of admin admin
+    if (username == null && password == null){
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.username", "admin");
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.password", "admin");
+    }
+    
+    String message = "";
+    String action = (String) request.getParameter("action");
+//    Listens for the form submit with action "login"
+    if ("login".equals(action)) {
+//    Checks if the username and password are equal to whats inside the properties file
+        if(request.getParameter("username").equals(username) && request.getParameter("password").equals(password)){
+//        If successful it will redirect the page to the admin login page and sets the session to logged in
+            session.setAttribute("isUserLoggedIn",true);
+            String redirectURL = "admin.jsp";
+            response.sendRedirect(redirectURL);
+        }else{
+//        otherwise give us an error msg
+            message = "Error Logging in Double check Username/Password....Default == user: admin, password: admin";
+        }
+    }
+%>    
 
 <!DOCTYPE html>
 <html>
@@ -21,27 +59,23 @@
         <div class="container mt-2">
             <div class="row justify-content-center align-items-center p-2">
                 <div class="m-1 col-sm-8 col-md-6 col-lg-4 shadow-sm pt-5 pb-5 mb-5 bg-white border rounded">
-                    <p class="text-center text-uppercase mt-3">Would you like to log in with your bank details?</p>
-                    <form class="form " action="./first.jsp" method="POST">
+                    <p class="text-center text-uppercase mt-3">Login to change Admin Details or Continue for transactions</p>
+                    <form class="form"  method="POST">
                         <div class="form-group input-group-md">
-                            <div class="label-container">
-                                <label>User</label>
-                            </div>
-                            <input type="text" class="form-control" name="user" value="testuser2">
-
+                            <label for="username">Username</label>
+                            <input id="username" type="text" class="form-control" name="username" value="testuser2">
                         </div>
                         <div class="form-group input-group-md">
-                            <div class="label-container">
-                                <label>Password</label>
-                            </div>
-                            <input type="password" class="form-control" name="password" value="defaulttestpass">
+                            <label for="password">Password</label>
+                            <input id="password" type="password" class="form-control" name="password" value="defaulttestpass">
                         </div>
-                        <button class="btn btn-lg btn-block btn-primary mt-4" type="submit">
-                            Login
-                        </button>
-                        <a href="./first.jsp" class="btn btn-lg btn-block btn-success mt-4" role="button">Continue without loging</a>
-
+                        <input type="hidden" name="action" value="login">
+                        <button class="btn btn-lg btn-block btn-primary mt-4" type="submit">Login</button>
+                        
+                        <a href="./first.jsp" class="btn btn-lg btn-block btn-success mt-4" role="button">Continue</a>
                     </form>
+                    
+                    <p><%= message %></p>
                 </div>
             </div>
         </div>

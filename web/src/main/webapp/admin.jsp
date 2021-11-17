@@ -10,9 +10,22 @@
 <%@page import="org.solent.ood.creditcardchecker.dao.WebObjectFactory" %>
 
 <%
-
+//    Verification to make sure you are logged in
+//    Checks if the user has already logged in
+    boolean loggedin = (boolean) session.getAttribute("isUserLoggedIn");
+    
+//    If the session object loggedin is not true then this code will run
+    if (loggedin != true){
+//    Sends you back to index
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    }
+    
+//    Setups the properties
     PropertiesDao propertiesDao = WebObjectFactory.getPropertiesDao();
     String url = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.url");
+    
+//    User Details
     String username = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.username");
     String password = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.password");
     
@@ -41,10 +54,15 @@
         propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.cvv", cvv);
         propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.issueNum", issueNum);
 
+    } else if ("changeUserDetails".equals(action)) {
+        message = "Changing User Details Details";
+        
+        username = (String) request.getParameter("username");
+        password = (String) request.getParameter("password");
+        
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.username", username);
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.password", password);
     }
-
-    
-
 %>
 <!DOCTYPE html>
 <html>
@@ -84,7 +102,24 @@
                             </div>
                             
                             <input type="hidden" name="action" value="changeCardDetails">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Change Card Details</button>
+                        </form>
+                                
+                        <form method="post">
+                            <div class="col">
+                                <h3>Input your new User Details</h3>
+                                
+                                <div class="mb-2">
+                                    <label for="username">Username:</label>
+                                    <input id="username" type="text" class="form-control" name="username" value=<%= username %>>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="password">Password:</label>
+                                    <input id="password" type="text" class="form-control" name="password" value=<%= password %>>
+                                </div>
+                            
+                            <input type="hidden" name="action" value="changeUserDetails">
+                            <button type="submit" class="btn btn-primary">Change User Details</button>
                         </form>
                     </div>
                 </div>
