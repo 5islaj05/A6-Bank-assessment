@@ -22,8 +22,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.solent.ood.creditcardchecker.model.dto.CreditCard;
 import org.solent.ood.creditcardchecker.model.dto.ReplyMessage;
-import solent.ac.uk.ood.examples.cardcheck.CardValidationResult;
-import solent.ac.uk.ood.examples.cardcheck.RegexCardValidator;
+import org.solent.ood.cardcheck.CardValidationResult;
+import org.solent.ood.cardcheck.RegexCardValidator;
 
 /**
  * To make the ReST interface easier to program. All of the replies are contained in ReplyMessage classes but only the fields indicated are populated with each

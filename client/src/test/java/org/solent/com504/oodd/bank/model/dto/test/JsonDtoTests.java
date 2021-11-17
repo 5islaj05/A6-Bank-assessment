@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.solent.com504.oodd.bank.model.dto.test;
+package org.solent.ood.bank.model.dto.test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,8 +13,8 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.solent.com504.oodd.bank.model.dto.CreditCard;
-import org.solent.com504.oodd.bank.model.dto.TransactionRequestMessage;
+import org.solent.ood.bank.model.dto.CreditCard;
+import org.solent.ood.bank.model.dto.TransactionRequestMessage;
 
 /**
  *

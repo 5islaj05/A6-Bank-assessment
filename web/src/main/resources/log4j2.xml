@@ -9,33 +9,20 @@
     </Properties>
     <Appenders>
         
-        <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %p %m%n"/>
-        </Console>
-        
-        
-        <!-- 
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-        -->
-        <!-- a roling file appender limits the size of log files
-       <RollingFile name="appLog" fileName="${APP_LOG_ROOT}/app-perf.log"
-                    filePattern="${APP_LOG_ROOT}/app-perf-%d{yyyy-MM-dd}-%i.log" >
-           <PatternLayout pattern="${LOG_PATTERN}"/>
-           <Policies>
-               <SizeBasedTriggeringPolicy size="19500KB" />
-           </Policies>
-           <DefaultRolloverStrategy max="1"/>
-       </RollingFile>
-        -->
-    </Appenders>
-    <Appenders>
-        <File name="logger" fileName="transactions-register.txt " append="true">
-            <PatternLayout>
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%nw</Pattern>
-            </PatternLayout>
-        </File>
+        
+        <!-- a roling file appender limits the size of log files -->
+        <RollingFile name="appLog" fileName="${APP_LOG_ROOT}/app-perf.log"
+                     filePattern="${APP_LOG_ROOT}/app-perf-%d{yyyy-MM-dd}-%i.log" >
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="1"/>
+        </RollingFile>
+        
     </Appenders>
     <!--<Appenders>
         
@@ -66,8 +53,7 @@
 
         <!-- this logs to  the Consol (System.out) -->
         <Root level="DEBUG">
-            <AppenderRef ref="console"/>
-            <AppenderRef ref="logger"/>
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 </Configuration>

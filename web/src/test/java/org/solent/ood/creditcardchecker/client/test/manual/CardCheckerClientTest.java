@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.solent.ood.creditcardchecker.client.CardCheckerClient;
 import org.solent.ood.creditcardchecker.model.dto.CreditCard;
-import solent.ac.uk.ood.examples.cardcheck.CardValidationResult;
+import org.solent.ood.cardcheck.CardValidationResult;
 
 /**
  *

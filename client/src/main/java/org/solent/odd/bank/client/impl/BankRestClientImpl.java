@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.solent.com504.oodd.bank.client.impl;
+package org.solent.ood.bank.client.impl;
 
 import java.util.logging.Level;
-import org.solent.com504.oodd.bank.model.client.BankRestClient;
-import org.solent.com504.oodd.bank.model.dto.CreditCard;
+import org.solent.ood.bank.model.client.BankRestClient;
+import org.solent.ood.bank.model.dto.CreditCard;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -23,8 +23,8 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 import org.glassfish.jersey.logging.LoggingFeature;
-import org.solent.com504.oodd.bank.model.dto.TransactionReplyMessage;
-import org.solent.com504.oodd.bank.model.dto.TransactionRequestMessage;
+import org.solent.ood.bank.model.dto.TransactionReplyMessage;
+import org.solent.ood.bank.model.dto.TransactionRequestMessage;
 
 /**
  *

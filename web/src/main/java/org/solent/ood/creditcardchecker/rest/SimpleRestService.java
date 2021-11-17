@@ -11,8 +11,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
-import solent.ac.uk.ood.examples.cardcheck.CardValidationResult;
-import solent.ac.uk.ood.examples.cardcheck.RegexCardValidator;
+import org.solent.ood.cardcheck.CardValidationResult;
+import org.solent.ood.cardcheck.RegexCardValidator;
 
 /**
  *

@@ -1,7 +1,7 @@
-package org.solent.com504.oodd.bank.model.client;
+package org.solent.ood.bank.model.client;
 
-import org.solent.com504.oodd.bank.model.dto.CreditCard;
-import org.solent.com504.oodd.bank.model.dto.TransactionReplyMessage;
+import org.solent.ood.bank.model.dto.CreditCard;
+import org.solent.ood.bank.model.dto.TransactionReplyMessage;
 
 public interface BankRestClient {
 

@@ -21,7 +21,7 @@ import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvi
 import org.glassfish.jersey.logging.LoggingFeature;
 import org.solent.ood.creditcardchecker.model.dto.CreditCard;
 import org.solent.ood.creditcardchecker.model.dto.ReplyMessage;
-import solent.ac.uk.ood.examples.cardcheck.CardValidationResult;
+import org.solent.ood.cardcheck.CardValidationResult;
 
 /**
  *

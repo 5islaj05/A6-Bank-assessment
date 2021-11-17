@@ -1,4 +1,4 @@
-package org.solent.com504.oodd.bank.model.dto;
+package org.solent.ood.bank.model.dto;
 
 import javax.persistence.Embeddable;
 

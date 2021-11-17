@@ -5,7 +5,7 @@
  */
 package org.solent.ood.creditcardchecker.model.dto;
 
-import solent.ac.uk.ood.examples.cardcheck.CardValidationResult;
+import org.solent.ood.cardcheck.CardValidationResult;
 
 /**
  *

@@ -28,12 +28,14 @@
             <groupId>org.solent.ood</groupId>
             <artifactId>card-checker</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
         
         <dependency>
             <groupId>org.solent.ood</groupId>
              <artifactId>bank-client</artifactId>
             <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>

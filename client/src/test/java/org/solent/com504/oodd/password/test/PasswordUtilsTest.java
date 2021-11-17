@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.solent.com504.oodd.password.test;
+package org.solent.ood.password.test;
 
 
 import org.junit.Test;
@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import org.mindrot.jbcrypt.BCrypt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.solent.com504.oodd.password.PasswordUtils;
+import org.solent.ood.password.PasswordUtils;
 
 
 /**
