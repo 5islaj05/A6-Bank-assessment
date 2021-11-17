@@ -139,8 +139,7 @@
                             </div>
                         </form>
                         
-                        
-                        <p id="msg"><%=message %></p>
+                        <p class="msg"><%=message %></p>
                         <div class="navbuttons"> 
                             
                             <form>
@@ -158,7 +157,6 @@
                                 <button type="submit" class="btn btn-success">Set to default values</button>
                             </form>
                         </div>
-                                
                     </div>
                 </div>
             </div>

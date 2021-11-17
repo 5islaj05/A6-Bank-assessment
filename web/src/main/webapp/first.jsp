@@ -160,7 +160,7 @@
 
     } else if ("logout".equals(action)) {
         session.setAttribute("isUserLoggedIn",false);
-    }
+    } 
 
 
 %>
@@ -186,18 +186,19 @@
                             Not logged in
                         <% } else {%>
 
-                            Logged as <%= session.getAttribute("sessionUser")%>
-
-                            <form action="./first.jsp" method="post">
-                                <div class="row">
-                                    <div>
-                                        <input type="hidden" class="form-control" name="action" value="logout">
-                                        <button class="btn btn-lg btn-block btn-danger mt-4" type="submit">
-                                            Log out
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                            <p class="msg">Logged in as <%= session.getAttribute("sessionUser")%></p>
+                            <div class="navbuttons">
+                                
+                                <form action="./first.jsp" method="post">
+                                    <input type="hidden" class="form-control" name="action" value="logout">
+                                    <button class="btn btn-lg btn-block btn-danger mt-4" type="submit">Logout</button>
+                                </form>
+                                
+                                <form action="./admin.jsp" method="post">
+                                    <input type="hidden" class="form-control" name="action" value="modify">
+                                    <button class="btn btn-lg btn-block btn-warning mt-4" type="submit">Modify</button>
+                                </form>
+                            </div>
                         <% }%>
 
                         <hr>
