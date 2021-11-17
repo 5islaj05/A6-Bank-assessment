@@ -101,24 +101,24 @@
         //Amount
         Double amount = Double.valueOf(request.getParameter("amount"));
 
-        if (session.getAttribute("sessionUser") == null) {
-            System.out.println("TRANFIERE SIN AUTENTICAR");
-            reply = client.transferMoney(cardFrom, cardTo, amount);
+//        if (session.getAttribute("sessionUser") == null) {
+//            System.out.println("TRANFIERE SIN AUTENTICAR");
+//            reply = client.transferMoney(cardFrom, cardTo, amount);
+//
+//        } else {
+//            System.out.println("SI TRANFIERE CON AUTENTICAR");
+//            System.out.println(user);
+//            System.out.println(password);
+//            System.out.println((String)session.getAttribute("sessionUser"));
+//            System.out.println((String)session.getAttribute("sessionPassword"));
+//            reply = client.transferMoney(cardFrom, cardTo, amount,(String)session.getAttribute("sessionUser"), (String)session.getAttribute("sessionPassword"));
+//            if (reply.getStatus() == null) {
+//                reply.setStatus(BankTransactionStatus.FAIL);
+//            }
+//
+//        }
 
-        } else {
-            System.out.println("SI TRANFIERE CON AUTENTICAR");
-            System.out.println(user);
-            System.out.println(password);
-            System.out.println((String)session.getAttribute("sessionUser"));
-            System.out.println((String)session.getAttribute("sessionPassword"));
-            reply = client.transferMoney(cardFrom, cardTo, amount,(String)session.getAttribute("sessionUser"), (String)session.getAttribute("sessionPassword"));
-            if (reply.getStatus() == null) {
-                reply.setStatus(BankTransactionStatus.FAIL);
-            }
-
-        }
-
-        System.out.println(reply);
+//        System.out.println(reply);
 
         // client.transferMoney(cardFrom, cardTo, amount);
     } else if ("refund".equals(action)) {
@@ -158,9 +158,8 @@
         reply = client.transferMoney(cardFrom, cardTo, amount);
 
     } else if ("logout".equals(action)) {
-
-        session.setAttribute("sessionUser", null);
-        session.setAttribute("sessionPassword", null);
+        
+        session.setAttribute("isUserLoggedIn",false);
     }
 
 
@@ -181,7 +180,8 @@
                     <div class="card-body">
                         <h1 class="card-title">Lets Transfer some Moneys</h1>
                         <hr>
-                        <% if (session.getAttribute("sessionUser") == null) { %>
+                        <% boolean loggedin = (boolean) session.getAttribute("isUserLoggedIn"); %>
+                        <% if (loggedin == false) { %>
                         Not logged in
                         <% } else {%>
 

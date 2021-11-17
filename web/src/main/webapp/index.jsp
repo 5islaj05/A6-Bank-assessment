@@ -36,6 +36,7 @@
         if(request.getParameter("username").equals(username) && request.getParameter("password").equals(password)){
 //        If successful it will redirect the page to the admin login page and sets the session to logged in
             session.setAttribute("isUserLoggedIn",true);
+            session.setAttribute("sessionUser", username);
             String redirectURL = "admin.jsp";
             response.sendRedirect(redirectURL);
         }else{
