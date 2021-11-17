@@ -4,10 +4,10 @@ on:
   push:
     branches:
     - jamil
-    - master
+
   pull_request:
     branches:
-    - '*'
+    - jamil
 jobs:
   build:
 
