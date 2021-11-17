@@ -5,7 +5,7 @@ The Point of sale application is a single web app tha acts like a sales device w
 ##  Notes
 
 - Design documentation can be found [here](./documentation/design.md)
-- Testing documentation (test plan) can be found [here](./documentation/test.md)
+- Testing documentation (test plan) can be found [here](./documentation/testcase.md)
 - We use the APACHE license V2 which can be found [here](./LICENSE) 
 
 Our project is uses a combination of different technologies to create a working Web interface that interacts with a REST API . We use the following
