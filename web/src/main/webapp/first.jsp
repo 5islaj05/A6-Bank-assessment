@@ -27,8 +27,7 @@
 <%@ page import="org.apache.logging.log4j.Logger" %>
 
 <!--<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"> -->
-<link rel="stylesheet" href="assets/css/Footer-Basic.css">
-<link rel="stylesheet" href="assets/css/styles.css">
+
 
 <%
     // IN CASE THE USER LOGGED IN
@@ -154,7 +153,8 @@
         cardTo.setCvv(cvv4);
         cardTo.setIssueNumber(issueNumber4);
 
-        Double amount = 50.0;
+        //Amount
+        Double amount = Double.valueOf(request.getParameter("amount"));
 
         reply = client.transferMoney(cardFrom, cardTo, amount);
 
@@ -170,7 +170,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <title>Main Page</title>
     </head>
     <body>
 
@@ -178,7 +180,7 @@
             <div class="col-sm-10">
                 <div class="card shadow-lg">
                     <div class="card-body">
-                        <h1 class="card-title">Lets TRanfer some Moneys</h1>
+                        <h1 class="card-title">Lets Transfer some Moneys</h1>
                         <hr>
                         <% if (session.getAttribute("sessionUser") == null) { %>
                         Not logged in
@@ -227,6 +229,7 @@
                                 <input type="hidden" name="cardnumber4" value=<%=cardFrom.getCardnumber()%>>
                                 <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
                                 <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
+                                <input type="hidden" name="amount" value=<%=reply.getAmount()%>>
                                 <input type="hidden" name="action" value="refund">
                                 <button type="submit" >Refund Transaction!</button>
                             </form>
@@ -257,6 +260,7 @@
                         <form action="./first.jsp" method="post">
                             <div class="row">
                                 <div class="col">
+                                    
                                     <h3>From Card</h3>
                                     <div class="mb-2">
                                         <div class="label-container">
