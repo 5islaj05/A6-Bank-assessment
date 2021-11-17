@@ -1,6 +1,0 @@
-org\solent\ood\creditcardchecker\model\dto\ReplyMessage.class
-org\solent\ood\creditcardchecker\client\CardCheckerClient.class
-org\solent\ood\creditcardchecker\rest\RestService.class
-org\solent\ood\creditcardchecker\model\dto\CreditCard.class
-org\solent\ood\creditcardchecker\rest\SimpleRestService.class
-org\solent\ood\creditcardchecker\rest\RestApp.class
