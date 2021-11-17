@@ -85,9 +85,14 @@ body {
 .navbuttons {
     display: flex;
     justify-content: center;
+    align-content: center;
 }
 
 .navbuttons form {
     margin: 10px;
+}
+
+#msg {
+    text-align: center;
 }
 

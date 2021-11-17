@@ -117,7 +117,6 @@
                                     <input id="issuenumber" type="text" class="form-control" name="issueNumber" value=<%= issueNum %>>
                                 </div>
                             </div>
-                            
                             <input type="hidden" name="action" value="changeCardDetails">
                             <button type="submit" class="btn btn-primary">Change Card Details</button>
                         </form>
@@ -134,13 +133,16 @@
                                     <label for="password">Password:</label>
                                     <input id="password" type="text" class="form-control" name="password" value=<%= password %>>
                                 </div>
-                            
+                                
                                 <input type="hidden" name="action" value="changeUserDetails">
                                 <button type="submit" class="btn btn-primary">Change User Details</button>
                             </div>
                         </form>
                         
-                        <div class="navbuttons">        
+                        
+                        <p id="msg"><%=message %></p>
+                        <div class="navbuttons"> 
+                            
                             <form>
                                 <input type="hidden" name="action" value="logout">
                                 <button type="submit" class="btn btn-danger">Logout</button>
@@ -159,7 +161,6 @@
                                 
                     </div>
                 </div>
-            <p><%=message %></p>
             </div>
         </div>
     </body>

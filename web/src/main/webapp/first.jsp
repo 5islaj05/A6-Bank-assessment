@@ -210,7 +210,7 @@
 
                             <div class="alert alert-info">
                                 <a class="close" data-dismiss="alert" href="#">×</a>
-                                £<%= reply.getAmount()%> WERE SUCCESFULLY TRANFERED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%>
+                                £<%= reply.getAmount()%> WERE SUCCESSFULLY TRANSFERRED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%>
 
 
                                 <form action="./first.jsp" method="post">
@@ -321,13 +321,6 @@
             </div>
 
         </div>
-
-
-
-
-
-
-
     </body>
 </html>
 
