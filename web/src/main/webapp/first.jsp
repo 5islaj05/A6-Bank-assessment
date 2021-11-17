@@ -52,7 +52,10 @@
 //        System.out.println((String) session.getAttribute("sessionPassword"));
 //    }
 
-
+//    setting up properties
+    PropertiesDao propertiesDao = WebObjectFactory.getPropertiesDao();
+    
+    
     String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";
 
     BankRestClient client = new BankRestClientImpl(bankUrl);
@@ -84,15 +87,13 @@
         cardFrom.setIssueNumber(issueNumber1);
 
         //Card To
-        String name2 = request.getParameter("name2");
-        String endDate2 = request.getParameter("endDate2");
-        String cardnumber2 = request.getParameter("cardnumber2");
-        String cvv2 = request.getParameter("cvv2");
-        String issueNumber2 = request.getParameter("issueNumber2");
+        String endDate2 = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.endDate");
+        String cardnumber2 = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.cardNum");
+        String cvv2 = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.cvv");
+        String issueNumber2 = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.issueNum");
 
         cardTo = new CreditCard();
 
-        cardTo.setName(name2);
         cardTo.setEndDate(endDate2);
         cardTo.setCardnumber(cardnumber2);
         cardTo.setCvv(cvv2);
@@ -100,6 +101,8 @@
 
         //Amount
         Double amount = Double.valueOf(request.getParameter("amount"));
+        
+        reply = client.transferMoney(cardFrom, cardTo, amount);
 
 //        if (session.getAttribute("sessionUser") == null) {
 //            System.out.println("TRANFIERE SIN AUTENTICAR");
@@ -120,7 +123,7 @@
 
 //        System.out.println(reply);
 
-        // client.transferMoney(cardFrom, cardTo, amount);
+        
     } else if ("refund".equals(action)) {
 
         String name3 = request.getParameter("name3");
@@ -138,19 +141,17 @@
         cardFrom.setIssueNumber(issueNumber3);
 
         //Card To
-        String name4 = request.getParameter("name4");
-        String endDate4 = request.getParameter("endDate4");
-        String cardnumber4 = request.getParameter("cardnumber4");
-        String cvv4 = request.getParameter("cvv4");
-        String issueNumber4 = request.getParameter("issueNumber4");
+        String endDate2 = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.endDate");
+        String cardnumber2 = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.cardNum");
+        String cvv2 = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.cvv");
+        String issueNumber2 = propertiesDao.getProperty("org.solent.ood.creditcardchecker.dao.issueNum");
 
         cardTo = new CreditCard();
 
-        cardTo.setName(name4);
-        cardTo.setEndDate(endDate4);
-        cardTo.setCardnumber(cardnumber4);
-        cardTo.setCvv(cvv4);
-        cardTo.setIssueNumber(issueNumber4);
+        cardTo.setEndDate(endDate2);
+        cardTo.setCardnumber(cardnumber2);
+        cardTo.setCvv(cvv2);
+        cardTo.setIssueNumber(issueNumber2);
 
         //Amount
         Double amount = Double.valueOf(request.getParameter("amount"));
@@ -158,7 +159,6 @@
         reply = client.transferMoney(cardFrom, cardTo, amount);
 
     } else if ("logout".equals(action)) {
-        
         session.setAttribute("isUserLoggedIn",false);
     }
 
@@ -181,27 +181,23 @@
                         <h1 class="card-title">Lets Transfer some Moneys</h1>
                         <hr>
                         <% boolean loggedin = (boolean) session.getAttribute("isUserLoggedIn"); %>
+                        
                         <% if (loggedin == false) { %>
-                        Not logged in
+                            Not logged in
                         <% } else {%>
 
-                        Logged as <%= session.getAttribute("sessionUser")%>
+                            Logged as <%= session.getAttribute("sessionUser")%>
 
-
-
-                        <form action="./first.jsp" method="post">
-                            <div class="row">
-                                <div>
-                                    <input type="hidden" class="form-control" name="action" value="logout">
-                                    <button class="btn btn-lg btn-block btn-danger mt-4" type="submit">
-                                        Log out
-                                    </button>
+                            <form action="./first.jsp" method="post">
+                                <div class="row">
+                                    <div>
+                                        <input type="hidden" class="form-control" name="action" value="logout">
+                                        <button class="btn btn-lg btn-block btn-danger mt-4" type="submit">
+                                            Log out
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-
-
-
+                            </form>
                         <% }%>
 
                         <hr>
@@ -212,33 +208,28 @@
 
                         <% if (reply.getStatus().equals(BankTransactionStatus.SUCCESS)) {%>
 
-                        <div class="alert alert-info">
-                            <a class="close" data-dismiss="alert" href="#">×</a>
-                            <%= reply.getAmount()%> POUNDS WERE SUCCESFULLY TRANFERED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%>
+                            <div class="alert alert-info">
+                                <a class="close" data-dismiss="alert" href="#">×</a>
+                                £<%= reply.getAmount()%> WERE SUCCESFULLY TRANFERED FROM <%= reply.getFromCardNo()%> TO <%= reply.getToCardNo()%>
 
 
-                            <form action="./first.jsp" method="post">
-                                <input type="hidden" name="name3" value=<%=cardTo.getName()%>>
-                                <input type="hidden" name="endDate3" value=<%=cardTo.getEndDate()%>>
-                                <input type="hidden" name="cardnumber3" value=<%=cardTo.getCardnumber()%>>
-                                <input type="hidden" name="cvv3" value=<%=cardTo.getCvv()%>>
-                                <input type="hidden" name="issueNumber3" value=<%=cardTo.getIssueNumber()%>>
-                                <input type="hidden" name="name4" value=<%=cardFrom.getName()%>>
-                                <input type="hidden" name="endDate4" value=<%=cardFrom.getEndDate()%>>
-                                <input type="hidden" name="cardnumber4" value=<%=cardFrom.getCardnumber()%>>
-                                <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
-                                <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
-                                <input type="hidden" name="amount" value=<%=reply.getAmount()%>>
-                                <input type="hidden" name="action" value="refund">
-                                <button type="submit" >Refund Transaction!</button>
-                            </form>
+                                <form action="./first.jsp" method="post">
+                                    <input type="hidden" name="name4" value=<%=cardFrom.getName()%>>
+                                    <input type="hidden" name="endDate4" value=<%=cardFrom.getEndDate()%>>
+                                    <input type="hidden" name="cardnumber4" value=<%=cardFrom.getCardnumber()%>>
+                                    <input type="hidden" name="cvv4" value=<%=cardFrom.getCvv()%>>
+                                    <input type="hidden" name="issueNumber4" value=<%=cardFrom.getIssueNumber()%>>
+                                    <input type="hidden" name="amount" value=<%=reply.getAmount()%>>
+                                    <input type="hidden" name="action" value="refund">
+                                    <button type="submit" >Refund Transaction!</button>
+                                </form>
 
-                        </div>
+                            </div>
 
                         <%} else if (reply.getStatus().equals(BankTransactionStatus.FAIL)) {%>
 
                         <div class="alert alert-danger" role="alert">
-                            <a class="close" data-dismiss="alert" href="#">×</a>No transaction was made <br>
+                            <a class="close" data-dismiss="alert" href="#">×</a>No transaction was made...Make sure the admin has set their card details!!<br>
                             <%= reply.getMessage().substring(0, 24)%>
                         </div>
 
@@ -260,47 +251,32 @@
                             <div class="row">
                                 <div class="col">
                                     
-                                    <h3>From Card</h3>
+                                    <h3>Enter Your Card Details</h3>
                                     <div class="mb-2">
-                                        <div class="label-container">
-                                            <label>Name</label>
-                                        </div>
-                                        <input type="text" class="form-control" name="name1" value="test user1">
+                                        <label for="name">Name</label>
+                                        <input id="name" type="text" class="form-control" name="name1" value="test user1">
                                     </div>
                                     <div class="mb-2">
-                                        <div class="label-container">
-                                            <label>End Date</label>
-                                        </div>
-                                        <input type="text" class="form-control" name="endDate1" value="11/21">
+                                        <label for="enddate">End Date</label>
+                                        <input id="enddate" type="text" class="form-control" name="endDate1" value="11/21">
                                     </div>
                                     <div class="mb-2">
-                                        <div class="label-container">
-                                            <label>Card Number</label>
-                                        </div>
-                                        <input type="text" class="form-control" name="cardnumber1" value="5133880000000012">
+                                        <label for="cardnum">Card Number</label>
+                                        <input id="cardnum" type="text" class="form-control" name="cardnumber1" value="5133880000000012">
                                     </div>
                                     <div class="mb-2">
-                                        <div class="label-container">
-                                            <label>CVV</label>
-                                        </div>
-                                        <input type="text" class="form-control" name="cvv1" value="123">
+                                        <label for="cvv">CVV</label>
+                                        <input id="cvv" type="text" class="form-control" name="cvv1" value="123">
                                     </div>
                                     <div class="mb-2">
-                                        <div class="label-container">
-                                            <label>Issuer Number</label>
-                                        </div>
-                                        <input type="text" class="form-control" name="issueNumber1" value="01">
+                                        <label for="issuenum">Issuer Number</label>
+                                        <input id="issuenum" type="text" class="form-control" name="issueNumber1" value="01">
                                     </div>
                                 </div>
 
-                                <div class="col">
+<!--                                <div class="col">
                                     <h3>To Card</h3>
-                                    <div class="mb-2">
-                                        <div class="label-container">
-                                            <label>Name</label>
-                                        </div>
-                                        <input type="text" class="form-control" name="name2" value="test user2">
-                                    </div>
+                                    
                                     <div class="mb-2">
                                         <div class="label-container">
                                             <label>End Date</label>
@@ -325,7 +301,8 @@
                                         </div>
                                         <input type="text" class="form-control" name="issueNumber2" value="01">
                                     </div>
-                                </div>
+                                </div>-->
+                                
                             </div>
                             <div class="row pt-5 pb-5 mb-5 ">
                                 <div class="col">

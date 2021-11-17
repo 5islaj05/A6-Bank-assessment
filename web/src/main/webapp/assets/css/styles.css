@@ -7,6 +7,7 @@
  3. Background Styling
  4. Navbar
  5. Home Page Styling
+ 6. Admin Page Styling
 
 */
 
@@ -79,4 +80,14 @@ body {
     width: 50%;
 }
 
+/* 6. Admin Page Styling */
+
+.navbuttons {
+    display: flex;
+    justify-content: center;
+}
+
+.navbuttons form {
+    margin: 10px;
+}
 

@@ -62,7 +62,24 @@
         
         propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.username", username);
         propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.password", password);
+    } else if ("logout".equals(action)){
+        session.setAttribute("isUserLoggedIn",false);
+        String redirectURL = "index.jsp";
+        response.sendRedirect(redirectURL);
+    } else if ("toTransaction".equals(action)){
+        String redirectURL = "first.jsp";
+        response.sendRedirect(redirectURL);
+    } else if ("default".equals(action)){
+        
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.cardNum", "4285860000000021");
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.endDate", "11/21");
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.cvv", "123");
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.issueNum", "01");
+        
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.username", "admin");
+        propertiesDao.setProperty("org.solent.ood.creditcardchecker.dao.password", "admin");
     }
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -118,14 +135,32 @@
                                     <input id="password" type="text" class="form-control" name="password" value=<%= password %>>
                                 </div>
                             
-                            <input type="hidden" name="action" value="changeUserDetails">
-                            <button type="submit" class="btn btn-primary">Change User Details</button>
+                                <input type="hidden" name="action" value="changeUserDetails">
+                                <button type="submit" class="btn btn-primary">Change User Details</button>
+                            </div>
                         </form>
+                        
+                        <div class="navbuttons">        
+                            <form>
+                                <input type="hidden" name="action" value="logout">
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
+
+                            <form>
+                                <input type="hidden" name="action" value="toTransaction">
+                                <button type="submit" class="btn btn-warning">Go to Transaction Page</button>
+                            </form>
+                            
+                            <form>
+                                <input type="hidden" name="action" value="defaults">
+                                <button type="submit" class="btn btn-success">Set to default values</button>
+                            </form>
+                        </div>
+                                
                     </div>
                 </div>
-            </div>
             <p><%=message %></p>
+            </div>
         </div>
-                
     </body>
 </html>
