@@ -376,8 +376,8 @@
                             <div class="btn-group btn-group-lg" role="group">
 
                                 <input type="button" name="clearBtn" id="clearBtn" value="Clear" class="btn btn-danger">
+                                <input type="button" name="backBtn" id="backBtn" value="Back" class="btn btn-danger">                        
                                 <input type="button" name="nextBtn" id="nextBtn" value="Next" class="btn btn-secondary">
-                                <input type="button" name="backBtn" id="backBtn" value="Back" class="btn btn-danger">
 
                             </div>
                         </div>
