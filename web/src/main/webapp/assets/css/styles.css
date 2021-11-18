@@ -96,3 +96,19 @@ body {
     text-align: center;
 }
 
+#nextBtn{
+    background-color: #33cc33;
+    border-color: #33cc33;
+
+}
+
+#backBtn{
+    background-color: #ffff00;
+    border-color: #ffff00;
+    color: black;
+}
+
+#transactionForm{
+    text-align: center;
+}
+

@@ -67,7 +67,7 @@
         String redirectURL = "index.jsp";
         response.sendRedirect(redirectURL);
     } else if ("toTransaction".equals(action)){
-        String redirectURL = "first.jsp";
+        String redirectURL = "keypad.jsp";
         response.sendRedirect(redirectURL);
     } else if ("default".equals(action)){
         
