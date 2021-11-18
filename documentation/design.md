@@ -45,3 +45,27 @@ UML Class Diagram describes the process behind the whole project, so called "bac
 Roboustness diagram describes the basic concept of the application explaining how different functions are being provided and their usage starting from the actor; user in this case. 
 
 ![](/documentation/images/roboustness.drawio.png)
+
+
+## Plan & Design
+| Task | Description | Participation |
+| ---- | ----------- | ------------- |
+| Project Plan | Project plan on GitHub to work out the most important features to create and assign the tasks to group members | Ismail & Jamil |
+| Dcoumentation | Documentation of the whole project, built in markdown in GitHub | Kacper & Jamil |
+| Use Cases | Use Case Diagram that would explain all the features in the project | Kacper |
+| UML Class Diagram | UML Class Diagram that would explain all the classes and functions in the project | Kacper |
+| Roboustness Diagram | Roboustness Diagram to define and summerize the whole project | Ilyass |
+| Website Design | Website design for creating the frontend with meeting the requirements to the maximum | Guillermo, Ismail, Jamil, Ilyass & Kacper |
+
+## Development Process
+| Task | Description | Participation |
+| ---- | ----------- | ------------- |
+| Modules | Connecting different modules and class to make fully functionate website | Ismail |
+| REST Client | Creating REST client | Guillermo |
+| Transaction page (backend) | Creating backend for the transaction page that would send payments from one account to the other one | Guillermo |
+| Transaction page (frontend) | Creating frontend for the transaction page to make the webpage more readable | Ismail, Jamil, Guillermo, Kacper |
+| Logger | Creating a logger as a transaction history | Ilyass |
+| Admin page | Creating an admin.jsp page (frontend & backend) | Ismail |
+| Login functionality | Login webpage | Guillermo & Ismail |
+| Keypad | Keypad functionality | Guillermo & Kacper |
+| General improvements | General improvements such as grammar spellings, polishing the front end and fixing bugs | Jamil |
