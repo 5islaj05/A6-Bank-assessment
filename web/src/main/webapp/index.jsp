@@ -40,7 +40,7 @@
             response.sendRedirect(redirectURL);
         }else{
 //        otherwise give us an error msg
-            message = "Error Logging in Double check Username/Password....Default == user: admin, password: admin";
+            message = "Error Logging in Double check Username/Password....Default == user: admin, password: admin.... Current set to: " + username + " and " + password;
         }
     }
 %>    
@@ -64,11 +64,11 @@
                     <form class="form"  method="POST">
                         <div class="form-group input-group-md">
                             <label for="username">Username</label>
-                            <input id="username" type="text" class="form-control" name="username" value=<%= username %>>
+                            <input id="username" type="text" class="form-control" name="username" value="Username">
                         </div>
                         <div class="form-group input-group-md">
                             <label for="password">Password</label>
-                            <input id="password" type="password" class="form-control" name="password" value=<%= password %>>
+                            <input id="password" type="password" class="form-control" name="password" value="Password">
                         </div>
                         <input type="hidden" name="action" value="login">
                         <button class="btn btn-lg btn-block btn-primary mt-4" type="submit">Login</button>
