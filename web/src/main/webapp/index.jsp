@@ -73,7 +73,7 @@
                         <input type="hidden" name="action" value="login">
                         <button class="btn btn-lg btn-block btn-primary mt-4" type="submit">Login</button>
                         
-                        <a href="./first.jsp" class="btn btn-lg btn-block btn-success mt-4" role="button">Continue</a>
+                        <a href="./keypad.jsp" class="btn btn-lg btn-block btn-success mt-4" role="button">Continue</a>
                     </form>
                     
                     <p><%= message %></p>
