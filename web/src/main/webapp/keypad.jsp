@@ -31,10 +31,35 @@
 
 
 <%
+<<<<<<< HEAD
 
 //    setting up properties
     PropertiesDao propertiesDao = WebObjectFactory.getPropertiesDao();
 
+=======
+    // IN CASE THE USER LOGGED IN
+
+    //Takes user and pass from index form
+//    if (request.getParameter("user") == username and request.getParameter("password") == password) {
+//        
+//        
+//    }
+//
+//    String sessionUser = (String) session.getAttribute("sessionUser");
+//
+//    if (sessionUser == null) {
+//
+//        session.setAttribute("sessionUser", user);
+//        session.setAttribute("sessionPassword", password);
+//        System.out.println("METEMOS USER Y PASS EN SESION");
+//        System.out.println((String) session.getAttribute("sessionUser"));
+//        System.out.println((String) session.getAttribute("sessionPassword"));
+//    }
+//    setting up properties
+    PropertiesDao propertiesDao = WebObjectFactory.getPropertiesDao();
+
+    //String bankUrl = "http://localhost:8080/bank/rest/";
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
     String bankUrl = "http://com528bank.ukwest.cloudapp.azure.com:8080/rest/";
 
     BankRestClient client = new BankRestClientImpl(bankUrl);
@@ -75,6 +100,26 @@
         Double amount = Double.valueOf(request.getParameter("amount"));
 
         reply = client.transferMoney(cardFrom, cardTo, amount);
+<<<<<<< HEAD
+=======
+//        if (session.getAttribute("sessionUser") == null) {
+//            System.out.println("TRANFIERE SIN AUTENTICAR");
+//            reply = client.transferMoney(cardFrom, cardTo, amount);
+//
+//        } else {
+//            System.out.println("SI TRANFIERE CON AUTENTICAR");
+//            System.out.println(user);
+//            System.out.println(password);
+//            System.out.println((String)session.getAttribute("sessionUser"));
+//            System.out.println((String)session.getAttribute("sessionPassword"));
+//            reply = client.transferMoney(cardFrom, cardTo, amount,(String)session.getAttribute("sessionUser"), (String)session.getAttribute("sessionPassword"));
+//            if (reply.getStatus() == null) {
+//                reply.setStatus(BankTransactionStatus.FAIL);
+//            }
+//
+//        }
+//        System.out.println(reply);
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
 
     } else if ("refund".equals(action)) {
 
@@ -105,8 +150,11 @@
         reply = client.transferMoney(cardFrom, cardTo, amount);
     } else if ("logout".equals(action)) {
         session.setAttribute("isUserLoggedIn", false);
+<<<<<<< HEAD
         String redirectURL = "index.jsp";
         response.sendRedirect(redirectURL);
+=======
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
     }
 %>
 <!DOCTYPE html>
@@ -118,7 +166,13 @@
         <link rel="stylesheet" href="assets/css/easy-numpad.css">
 
         <title>Main Page</title>
+<<<<<<< HEAD
         <script>
+=======
+
+        <script>
+
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
             var txt;
             var label;
             var full = false;
@@ -134,7 +188,11 @@
             var issueNumber;
             var amount;
 
+<<<<<<< HEAD
             var errorLog;
+=======
+
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
 
             function checkIndex(event) {
 
@@ -153,6 +211,12 @@
                 } else if (index == 4) {
                     document.getElementById("label").innerHTML = "Enter Amount:";
                     txt.value = amount.value;
+<<<<<<< HEAD
+=======
+
+                    
+
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
                 }
             }
 
@@ -169,6 +233,7 @@
                     amount.value = txt.value;
                 }
                 txt.value = "";
+<<<<<<< HEAD
                 errorLog.innerHTML = "";
             }
 
@@ -211,10 +276,13 @@
 
 
                 }
+=======
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
             }
 
             function nextBtn(event) {
                 if (index >= 4) {
+<<<<<<< HEAD
                     if (validateInputs() === false) {
                     } else {
                         saveData();
@@ -228,6 +296,18 @@
                         checkIndex();
                     }
                 }
+=======
+                    saveData();
+                    transactionForm.submit();
+                } else {
+
+                    saveData();
+                    index++;
+                    checkIndex();
+                }
+
+
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
             }
 
             function backBtn(event) {
@@ -238,11 +318,20 @@
                     index--;
                     checkIndex();
                 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
             }
 
 
             function pulseN(event) {
+<<<<<<< HEAD
                 txt.value += event.target.value;
+=======
+               txt.value += event.target.value;
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
             }
 
             function pulseClear(event) {
@@ -265,7 +354,11 @@
                     document.getElementById("clearBtn").addEventListener('click', pulseClear);
 
                     transactionForm = document.getElementById("transactionForm");
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
 
                     cardNumber = document.getElementById("cardnumber1");
                     endDate = document.getElementById("endDate1");
@@ -273,8 +366,11 @@
                     issueNumber = document.getElementById("issueNumber1");
                     amount = document.getElementById("amount");
 
+<<<<<<< HEAD
                     errorLog = document.getElementById("errorLog")
 
+=======
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
                 }
             }
             document.addEventListener('readystatechange', asignarEventos);
@@ -288,8 +384,12 @@
 
                         <form action="./keypad.jsp" method="post" id="transactionForm">
                             <h1 id="label">Enter card number:<br></h1>
+<<<<<<< HEAD
                             <input type="text" name="text"   id="txt">
                             <div id="errorLog" style="color: red; font-size: 100%; font-weight: 500;"></div>
+=======
+                            <input type="text" name="text" readonly="true"  id="txt">
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
 
                             <div>
                                 <input type="hidden" name="cardnumber1" class="inputCard"  id="cardnumber1">
@@ -346,7 +446,35 @@
 
                         <%=cardTo%> <br>
                         <% }%>
+<<<<<<< HEAD
                        
+=======
+
+
+                        <!-- payment --><!--
+                        <form action="./keypad.jsp" method="post">
+                            <h1 id="label">Enter card number:<br></h1>
+
+                            <div>
+                                <input type="text" name="cardnumber1" class="easy-put"  id="txt" >
+                                <input type="hidden" name="endDate1" class="easy-put"  id="1" >
+                                <input type="hidden" name="cvv1" class="easy-put"  id="2" >
+                                <input type="hidden" name="issueNumber1" class="easy-put"  id="3" >
+                                <input type="hidden" name="amount" class="easy-put"   id="4" >
+                            </div>
+
+                            <div class="row" id="invisibleDiv">
+
+
+                            </div>
+
+                            <input type="hidden" name="action" value="transaction">
+                            <button type="button" id="btnKeyPad" class="btn btn-primary">Submit</button>
+                            <button type="submit" onclick="callStoredValues()" class="btn btn-primary" id="btnTransaction">Initiate Transaction</button>
+                        </form>
+                        -->
+                        <!-- numpad -->
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
                         <div id="numpad" class="text-center">
                             <div class="btn-group btn-group-lg" role="group">
                                 <input type="button" name="1" id="1" value="1" class="number btn btn-secondary">
@@ -376,8 +504,17 @@
                             <div class="btn-group btn-group-lg" role="group">
 
                                 <input type="button" name="clearBtn" id="clearBtn" value="Clear" class="btn btn-danger">
+<<<<<<< HEAD
                                 <input type="button" name="nextBtn" id="nextBtn" value="Next" class="btn btn-secondary">
                                 <input type="button" name="backBtn" id="backBtn" value="Back" class="btn btn-danger">
+=======
+                                <input type="button" name="backBtn" id="backBtn" value="Back" class="btn btn-danger">
+                                <input type="button" name="nextBtn" id="nextBtn" value="Next" class="btn btn-secondary">
+                                
+
+
+
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
 
                             </div>
                         </div>
@@ -395,5 +532,9 @@
             crossorigin="anonymous">
     </script>
     <script src="assets/js/easy-numpad.js"></script>
+<<<<<<< HEAD
+=======
+    <script src="assets/js/keypad-form.js"></script>
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
 </html>
 

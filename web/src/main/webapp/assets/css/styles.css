@@ -96,10 +96,28 @@ body {
     text-align: center;
 }
 
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+#nextBtn{
+    background-color: #33cc33;
+    border-color: #33cc33;
+
+}
+
+#backBtn{
+    background-color: #ffff00;
+    border-color: #ffff00;
+    color: black;
+}
+
+#transactionForm{
+    text-align: center;
+}
+>>>>>>> 36051544f24a18d53a7d16f066d866969c4e111d
 
