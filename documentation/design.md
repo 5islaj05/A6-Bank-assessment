@@ -31,3 +31,17 @@ The use cases of different features in the application:
 ### Use Case Diagram
 
 Use Case Diagram shows the exact same process described in the table above but as a drawing for better understanding.
+
+![](/documentation/images/usecase.drawio.png)
+
+### UML Class Diagram
+
+UML Class Diagram describes the process behind the whole project, so called "backend". It shows how different functions and classes have been used to meet the requirements in the application that will make it more readable for everyone, especially for those who do not want to look at the code itself.
+
+![](/documentation/images/uml.drawio.png)
+
+### UML Roboustness Diagram
+
+Roboustness diagram describes the basic concept of the application explaining how different functions are being provided and their usage starting from the actor; user in this case. 
+
+![](/documentation/images/roboustness.drawio.png)
