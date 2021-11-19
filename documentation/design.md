@@ -40,11 +40,11 @@ UML Class Diagram describes the process behind the whole project, so called "bac
 
 ![](/documentation/images/uml.drawio.png)
 
-### UML Roboustness Diagram
+### UML Robustness Diagram
 
-Roboustness diagram describes the basic concept of the application explaining how different functions are being provided and their usage starting from the actor; user in this case. 
+Robustness diagram describes the basic concept of the application explaining how different functions are being provided and their usage starting from the actor; user in this case. 
 
-![](/documentation/images/roboustness.drawio.png)
+![](/documentation/images/Robustness.drawio.png)
 
 
 ## Plan & Design
