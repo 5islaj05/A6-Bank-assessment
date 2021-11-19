@@ -298,7 +298,7 @@
 
                         <form action="./keypad.jsp" method="post" id="transactionForm">
                             <h1 id="label">Enter card number:<br></h1>
-                            <input type="text" name="text"   id="txt">
+                            <input type="text" name="text" readonly="true"  id="txt">
                             <div id="errorLog" style="color: red; font-size: 100%; font-weight: 500;"></div>
 
                             <div>
