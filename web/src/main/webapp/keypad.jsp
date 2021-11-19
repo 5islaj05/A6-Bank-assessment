@@ -203,12 +203,22 @@
                     }
                 } else if (index == 4) {
 
-                    var check = /^[0-9]+[.]{1}[0-9]{2}$/;
-                    if (!check.test(txt.value.toString())) {
-                        errorLog.innerHTML = "Please enter an amount above 1";
+                    
+                    var check = /^[0-9]+$/;
+                    var price = parseInt(txt.value);
+                    
+                    
+                    if (price < 1) {
+                        
+                        errorLog.innerHTML = "Please enter an amount greater than 0";
                         return false;
                     }
-
+                    
+                    else if (!check.test(txt.value.toString())) {
+                        
+                        errorLog.innerHTML = "Please enter an amount greater than 0";
+                        return false;
+                    }
 
                 }
             }
